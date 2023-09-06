@@ -16,13 +16,13 @@
 
 (sdegeo:set-default-boolean "AB")
 
-(sdegeo:create-rectangle (position -5 -5 0) (position 20 -10 0) "Silicium" "Si_multiplication_layer")
+(sdegeo:create-rectangle (position -10 -5 0) (position 25 -11 0) "Silicium" "Si_multiplication_layer")
 
 (sdegeo:set-default-boolean "ABA")
 
 (sdegeo:create-rectangle (position -2 -4 0) (position 17 -5 0) "Silicium" "Si_charge_layer")
 
-(sdegeo:create-rectangle (position -5 -10 0) (position 20 -12 0) "Silicium" "Si_contact_layer")
+(sdegeo:create-rectangle (position -10 -10 0) (position 25 -12 0) "Silicium" "Si_contact_layer")
 
 
 #####################################################################################################################
@@ -40,3 +40,8 @@
 #####################################################################################################################
 
 #Definition of the doping (n,p)
+
+
+
+
+
