@@ -46,11 +46,11 @@
 
 (sdegeo:define-contact-set "anode" 4  (color:rgb 1 0 0 ) "##")
 (sdegeo:set-current-contact-set "p_contact")
-(sdegeo:set-contact-edges (find-edge-id (position 7.5 0 0)))
+(sdegeo:set-contact-edges (find-edge-id (position 0 0 0)))
 
 (sdegeo:define-contact-set "cathode" 4  (color:rgb 1 0 0 ) "##")
 (sdegeo:set-current-contact-set "n_contact")
-(sdegeo:set-contact-edges (find-edge-id (position 7.5 (-A - B - C - D - E) 0)))
+(sdegeo:set-contact-edges (find-edge-id (position 0 (-A - B - C - D - E) 0)))
 
 #####################################################################################################################
 
