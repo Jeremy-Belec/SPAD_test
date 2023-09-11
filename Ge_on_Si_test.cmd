@@ -46,13 +46,13 @@
 
 #####################################################################################################################
 
-#Definition of the contacts (anode, cathode)
+#Definition of the contacts (n_contact, p_contact)
 
-(sdegeo:define-contact-set "anode" 4  (color:rgb 1 0 0 ) "##")
+(sdegeo:define-contact-set "p_contact" 4  (color:rgb 1 0 0 ) "##")
 (sdegeo:set-current-contact-set "p_contact")
 (sdegeo:set-contact-edges (find-edge-id (position 0 0 0)))
 
-(sdegeo:define-contact-set "cathode" 4  (color:rgb 1 0 0 ) "##")
+(sdegeo:define-contact-set "n_contact" 4  (color:rgb 1 0 0 ) "##")
 (sdegeo:set-current-contact-set "n_contact")
 (sdegeo:set-contact-edges (find-edge-id (position 0 (- E (- D (- C (- B (* A -1))))) 0)))
 
