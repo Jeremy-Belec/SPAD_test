@@ -25,23 +25,23 @@
 
 #Definition of the device
 
-(sdegeo:create-rectangle (position (-0.5*L_contact) 0 0) (position (0.5*L_contact) (-A) 0) "Germanium" "Ge_contact_layer")
+(sdegeo:create-rectangle (position (* L_contact -0.5) 0 0) (position (* L_contact 0.5) (* A -1) 0) "Germanium" "Ge_contact_layer")
 
-(sdegeo:create-rectangle (position (-0.5*L_mult) (-A) 0) (position (0.5*L_mult) (-A-B) 0) "Germanium" "Ge_absorption_layer")
+(sdegeo:create-rectangle (position (* L_mult -0.5) (* A -1) 0) (position (* L_mult 0.5) (- B (* A -1)) 0) "Germanium" "Ge_absorption_layer")
 
-(sdegeo:create-rectangle (position (-0.5*L_mult) (-A-B) 0) (position (-0.5*L_charge) (-A-B-C) 0) "Silicium" "Si_multiplication_layer")
+(sdegeo:create-rectangle (position (* L_mult -0.5) (- B (* A -1)) 0) 0) (position (* L_charge -0.5) (- C (- B (* A -1))) 0) "Silicium" "Si_multiplication_layer")
 
-(sdegeo:create-rectangle (position (0.5*L_charge) (-A-B) 0) (position (0.5*L_mult) (-A-B-C) 0) "Silicium" "Si_multiplication_layer")
+(sdegeo:create-rectangle (position (* L_charge 0.5) (- B (* A -1)) 0) 0) (position (* L_mult 0.5) (- C (- B (* A -1))) 0) "Silicium" "Si_multiplication_layer")
 
 (sdegeo:set-default-boolean "AB")
 
-(sdegeo:create-rectangle (position (-0.5*L_dev) (-A-B-C) 0) (position (0.5*L_dev) (-A-B-C-D) 0) "Silicium" "Si_multiplication_layer")
+(sdegeo:create-rectangle (position (* L_dev -0.5) (- C (- B (* A -1))) 0) (position (* L_dev 0.5) (- D (- C (- B (* A -1)))) 0) "Silicium" "Si_multiplication_layer")
 
 (sdegeo:set-default-boolean "ABA")
 
-(sdegeo:create-rectangle (position (-0.5*L_charge) (-A-B) 0) (position (0.5*L_charge (-A-B-C) 0) "Silicium" "Si_charge_layer")
+(sdegeo:create-rectangle (position (* L_charge -0.5) (- B (* A -1)) 0) (position (* L_charge 0.5) (- C (- B (* A -1))) 0) "Silicium" "Si_charge_layer")
 
-(sdegeo:create-rectangle (position (-0.5*L_dev) (-A-B-C-D) 0) (position (0.5*L_dev) (-A-B-C-D-E) 0) "Silicium" "Si_contact_layer")
+(sdegeo:create-rectangle (position (* L_dev -0.5) (- D (- C (- B (* A -1)))) 0) (position (* L_dev 0.5) (- E (- D (- C (- B (* A -1))))) 0) "Silicium" "Si_contact_layer")
 
 
 #####################################################################################################################
@@ -54,7 +54,7 @@
 
 (sdegeo:define-contact-set "cathode" 4  (color:rgb 1 0 0 ) "##")
 (sdegeo:set-current-contact-set "n_contact")
-(sdegeo:set-contact-edges (find-edge-id (position 0 (-A - B - C - D - E) 0)))
+(sdegeo:set-contact-edges (find-edge-id (position 0 (- E (- D (- C (- B (* A -1))))) 0)))
 
 #####################################################################################################################
 
@@ -71,6 +71,8 @@
 (sdedr:define-constant-profile "n_contact_profile" "PhosphorusActiveConcentration" N_cont)
 (sdedr:define-constant-profile-region "n_contact_region" "n_contact_profile" "Si_contact_layer")
 
+#####################################################################################################################
 
+#Definition of te meshing
 
 
