@@ -1,7 +1,5 @@
 (sde:clear)
 
-(sdeio:readbnd "sde_dvs.bnd")
-
 #####################################################################################################################
 #Definition of dimensions variables:
 (define A 1)
