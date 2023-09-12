@@ -81,4 +81,59 @@
 
 #Definition of te meshing
 
-(sde:build-mesh "snmesh" " " "n@node@_msh")
+
+
+#Ge Contact
+(sdedr:define-refeval-window "RefEvalWin.Contact" "Rectangle"  (position (* L_contact -0.5) 0 0) (position (* L_contact 0.5) A 0))
+(sdedr:define-refinement-size "RefinementDefinition.Contact" (/ L_contact 10) (/ A 10) (/ L_contact 100) (/ A 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Contact" "RefinementDefinition.Contact" (list "window" "RefEvalWin.Contact"))
+
+
+#Ge absorption layer
+(sdedr:define-refeval-window "RefEvalWin.Ge_absorption" "Rectangle"  (position (* L_mult -0.5) A 0) (position (* L_mult 0.5) (+ A B) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Ge_absorption" (/ L_mult 10) (/ B 10) (/ L_mult 100) (/ B 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Ge_absorption" "RefinementDefinition.Ge_absorption" (list "window" "RefEvalWin.Ge_absorption"))
+
+
+#Si Charge sheet
+(sdedr:define-refeval-window "RefEvalWin.Si_charge" "Rectangle"  (position (* L_charge -0.5) (+ A B) 0) (position (* L_charge 0.5) (+ C (+ A B)) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Si_charge" (/ L_mult 10) (/ B 10) (/ L_mult 100) (/ B 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Si_charge" "RefinementDefinition.Si_charge" (list "window" "RefEvalWin.Si_charge"))
+
+
+#Si Multiplication 
+
+(sdedr:define-refeval-window "RefEvalWin.Si_mult" "Rectangle"  (position (* L_mult -0.5) (+ A B) 0) (position (* L_charge -0.5) (+ C (+ A B)) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Si_mult" (/ L_mult 10) (/ B 10) (/ L_mult 100) (/ B 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Si_mult" "RefinementDefinition.Si_mult" (list "window" "RefEvalWin.Si_mult"))
+
+(sdedr:define-refeval-window "RefEvalWin.Si_mult" "Rectangle"  (position (* L_charge 0.5) (+ A B) 0) (position (* L_mult 0.5) (+ C (+ A B)) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Si_mult" (/ L_mult 10) (/ B 10) (/ L_mult 100) (/ B 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Si_mult" "RefinementDefinition.Si_mult" (list "window" "RefEvalWin.Si_mult"))
+
+(sdedr:define-refeval-window "RefEvalWin.Si_mult" "Rectangle"  (position (* L_dev -0.5) (+ C (+ A B)) 0) (position (* L_dev 0.5) (+ D (+ C (+ A B))) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Si_mult" (/ L_mult 10) (/ B 10) (/ L_mult 100) (/ B 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Si_mult" "RefinementDefinition.Si_mult" (list "window" "RefEvalWin.Si_mult"))
+
+
+#Si contact
+
+(sdedr:define-refeval-window "RefEvalWin.Si_contact" "Rectangle"  (position (* L_dev -0.5) (+ D (+ C (+ A B))) 0) (position (* L_dev 0.5) (+ E(+ D (+ C (+ A B)))) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Si_contact" (/ L_mult 10) (/ B 10) (/ L_mult 100) (/ B 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Si_contact" "RefinementDefinition.Si_contact" (list "window" "RefEvalWin.Si_contact"))
+
+
+
+
+
+
+
+(sde:set-project-name "n1")
+(sdesnmesh:iocontrols "outputFile" "n1")
+(sde:set-meshing-command "snmesh")
+(sde:set-project-name "n1")
+(sdesnmesh:iocontrols "outputFile" "n1")
+(sde:build-mesh "" "n1")
+(system:command "svisual n1_msh.tdr &")
+(sde:save-model "n1")
+
