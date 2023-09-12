@@ -29,7 +29,7 @@
 
 (sdegeo:create-rectangle (position (* L_mult -0.5) (- B (* A -1)) 0) (position (* L_charge -0.5) (- C (- B (* A -1))) 0) "Silicium" "Si_multiplication_layer")
 
-(sdegeo:create-rectangle (position (* L_charge 0.5) (- B (* A -1)) 0) 0) (position (* L_mult 0.5) (- C (- B (* A -1))) 0) "Silicium" "Si_multiplication_layer")
+(sdegeo:create-rectangle (position (* L_charge 0.5) (- B (* A -1)) 0) (position (* L_mult 0.5) (- C (- B (* A -1))) 0) "Silicium" "Si_multiplication_layer")
 
 (sdegeo:set-default-boolean "AB")
 
