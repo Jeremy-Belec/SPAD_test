@@ -2,24 +2,24 @@
 
 #####################################################################################################################
 #Definition of dimensions variables:
-(define A 0.05)        #Ge contact thickness (p)[um]
-(define B 1)            #Ge absorption layer thickness (p)[um]
-(define C 0.1)          #Si charge sheet thickness (p)[um]
-(define D 1.5)          #Si multiplication region thickness (n)[um]
-(define E 0.15)          #Si contact thickness (n)[um]
+(define A 0.05) #Ge contact thickness (p)[um]
+(define B 1) #Ge absorption layer thickness (p)[um]
+(define C 0.1) #Si charge sheet thickness (p)[um]
+(define D 1.5) #Si multiplication region thickness (n)[um]
+(define E 0.15) #Si contact thickness (n)[um]
 
-(define L_contact 12)      #Length of Ge contact              [um]
-(define L_charge 16)        #Length of Si charge sheet        [um]
-(define L_mult 20)          #Length of Si multiplication region    [um]
-(define L_dev 30)            #Length of device                [um]
+(define L_contact 12) #Length of Ge contact [um]
+(define L_charge 16) #Length of Si charge sheet [um]
+(define L_mult 20) #Length of Si multiplication region [um]
+(define L_dev 30) #Length of device [um]
 
 #Definition of Doping variables
 
-(define P_cont 5e19)      #    P doping of P-contact
-(define P_absorber 3e15)    #    P doping of absorber
-(define P_charge 1e17)      #    P doping of charge sheet
-(define N_multi 1e15)      #    N doping of multiplication region
-(define N_cont 1e19)      #     N doping of N-contact
+(define P_cont 5e19) #P doping of P-contact
+(define P_absorber 3e15) #P doping of absorber
+(define P_charge 1e17) #P doping of charge sheet
+(define N_multi 1e15) #N doping of multiplication region
+(define N_cont 1e19) #N doping of N-contact
 #####################################################################################################################
 
 #Definition of the device
