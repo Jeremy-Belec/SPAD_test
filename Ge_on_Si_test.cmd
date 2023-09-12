@@ -1,7 +1,7 @@
 (sde:clear)
 
 #####################################################################################################################
-#Definition of dimensions variables:
+#                                             Definition of dimensions variables:
 (define A 0.05)
 (define B 1)
 (define C 0.1)
@@ -13,7 +13,7 @@
 (define L_mult 20)
 (define L_dev 30)
 
-#Definition of Doping variables
+#                                                Definition of Doping variables
 
 (define P_cont 5e19)
 (define P_absorber 3e15)
@@ -22,8 +22,9 @@
 (define N_cont 1e19)
 #####################################################################################################################
 
+#                                                    Definition of the device
 
-#Definition of the device
+
 
 (sdegeo:create-rectangle (position (* L_contact -0.5) 0 0) (position (* L_contact 0.5) A 0) "Germanium" "Ge_contact_layer")
 
@@ -46,7 +47,9 @@
 
 #####################################################################################################################
 
-#Definition of the contacts (n_contact, p_contact)
+#                                  Definition of the contacts (n_contact, p_contact)
+
+
 
 (sdegeo:define-contact-set "p_contact" 4  (color:rgb 1 0 0 ) "##")
 (sdegeo:set-current-contact-set "p_contact")
@@ -58,7 +61,9 @@
 
 #####################################################################################################################
 
-#Definition of the doping (n,p)
+#                                                Definition of the doping (n,p)
+
+
 
 #Doping of p regions
 (sdedr:define-constant-profile "p_contact_profile" "BoronActiveConcentration" P_cont)
@@ -79,7 +84,7 @@
 
 #####################################################################################################################
 
-#Definition of te meshing
+#                                                      Definition of te meshing
 
 
 
@@ -126,7 +131,7 @@
 
 
 
-
+#                                                      Building the meshing
 
 (sde:set-project-name "n1")
 (sdesnmesh:iocontrols "outputFile" "n1")
