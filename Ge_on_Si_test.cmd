@@ -73,4 +73,4 @@
 
 #Definition of te meshing
 
-
+(sde:build-mesh "snmesh" " " "n@node@_msh")
