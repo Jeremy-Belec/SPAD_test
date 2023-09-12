@@ -1,0 +1,136 @@
+
+****************************************************************************
+***                       Sentaurus Workbench gsub                       ***
+***                          Version U-2022.12                           ***
+***                      (2.7886616, x86_64, Linux)                      ***
+***                                                                      ***
+***                Copyright (c) 1994-2022 Synopsys, Inc.                ***
+***                                                                      ***
+***  This software and the associated documentation are confidential     ***
+***  and proprietary to Synopsys, Inc.  Your use or disclosure of this   ***
+***  software is subject to the terms and conditions of a written        ***
+***  license agreement between you, or your company, and Synopsys, Inc.  ***
+****************************************************************************
+
+gsub is running on host 'vcl-vm0-155' by user 'v57111'
+Binary '/CMC/tools/synopsys/sentaurus_vU-2022.12/tcad/current/linux64/bin/../lib/gsub0'
+Command line options '-verbose -swb_pid 52257 -q local:default -e remaining /home/v57111/mydata/Vines_parametrisation'
+Current directory '/home/v57111'
+Project organization 'Traditional'
+Some relevant environment variables:
+	STROOT=/CMC/tools/synopsys/sentaurus_vU-2022.12
+	STRELEASE=current
+	STROOT_LIB=/CMC/tools/synopsys/sentaurus_vU-2022.12/tcad/current/lib
+	STDB=/home/v57111/mydata
+	DATEX=/CMC/tools/synopsys/sentaurus_vU-2022.12/tcad/current/lib/datexcodes.txt
+	DISPLAY=:1001
+
+Starting swblm daemon...OK
+Project '/home/v57111/mydata/Vines_parametrisation'
+Application mode : traditional
+12:17:39 Jul 27 2023 <Vines_parametrisation> submitted to the batch system
+Loading global queue configuration file '/CMC/tools/synopsys/sentaurus_vU-2022.12/queues/gqueues.dat'...ok
+Loading project tree '/home/v57111/mydata/Vines_parametrisation/gtree.dat'
+>>>>> Preprocessing the project to run in normal mode
+Loading jobs and dependence graph '"/home/v57111/mydata/Vines_parametrisation/gexec.cmd"'
+INITIALIZING PREPROCESSOR:
+Loading project tree '/home/v57111/mydata/Vines_parametrisation/gtree.dat'
+Loading project variables '/home/v57111/mydata/Vines_parametrisation/gvars.dat'
+--Get files to preprocess...
+--Create file handlers...
+--Read the toolflow...
+--Analyze tool-file dependencies...
+--Read all nodes to preprocess...
+--Group nodes into experiments...
+--Get all variables...
+--Get all parameters...
+PREPROCESSOR SUCCESSFULLY INITIALIZED.
+PREPROCESSING STEP 1:
+Reading file /home/v57111/mydata/Vines_parametrisation/sde_dvs.cmd
+Reading file /home/v57111/mydata/Vines_parametrisation/sde_dvs.bnd
+Reading file /home/v57111/mydata/Vines_parametrisation/sdevice_des.cmd
+Reading file /home/v57111/mydata/Vines_parametrisation/sdevice.par
+PREPROCESSING STEP 2:
+---------------------------------------
+Preprocessing file /home/v57111/mydata/Vines_parametrisation/sde_dvs.cmd for node 1
+---------------------------------------
+Preprocessing file /home/v57111/mydata/Vines_parametrisation/sde_dvs.bnd for node 1
++++Node successfully preprocessed+++
+---------------------------------------
+Preprocessing file /home/v57111/mydata/Vines_parametrisation/sdevice_des.cmd for node 2
+'@tdr@' creates dependences with the node(s) '1'
+---------------------------------------
+Preprocessing file /home/v57111/mydata/Vines_parametrisation/sdevice.par for node 2
++++Node successfully preprocessed+++
+The node '2' has dependencies to the node(s) '1'
+Writing 'gexec.cmd'
+Loading jobs and dependence graph '"/home/v57111/mydata/Vines_parametrisation/gexec.cmd"'
+Warning: node '5' not queued: node is virtual
+Warning: node '6' not queued: node is virtual
+Warning: node '7' not queued: node is virtual
+Warning: node '8' not queued: node is virtual
+Warning: node '9' not queued: node is virtual
+Warning: node '10' not queued: node is virtual
+Warning: node '11' not queued: node is virtual
+>>>>>>>>>> job '1' status changed from 'none' to 'queued'
+Warning: node '3' not queued: node is virtual
+>>>>>>>>>> job '2' status changed from 'none' to 'queued'
+-----------------------------------------------------------------
+queue "local:default" - 1 2
+-----------------------------------------------------------------
+>>>>>>>>>> Initializing back-end schedulers...
+>>>>>>>> Loaded Schedulers are ... local
+local% initialize 'local' scheduler data
+>>>>> List of Active Schedulers : local
+<<<<<<<<<<
+>>>>>>>>>> job '1' status changed from 'queued' to 'ready'
+>>>>>>>>>> os_rm /home/v57111/mydata/Vines_parametrisation/n1_dvs.job
+local% submit job 1 for local execution
+>>>>>>>>>> job '1' status changed from 'ready' to 'pending'
+local% exec /CMC/tools/synopsys/sentaurus_vU-2022.12/bin/gjob -verbose -nice 19   -job 1 -swb_pid 52257 -gsub_pid 55517 -gsub_host vcl-vm0-155 -gsub_port 37552  "/home/v57111/mydata/Vines_parametrisation"
+>>>>>>>>>> job '1' status changed from 'pending' to 'running'
+12:17:39 Jul 27 2023     job 1 <sde> started on host 'vcl-vm0-155': "sde -l n1_dvs.cmd"
+>>>>>>>>>> job '1' status changed from 'running' to 'done'
+12:17:58 Jul 27 2023 +++ job 1 <sde> done: exit(0)
+>>>>>>>>>> job '2' status changed from 'queued' to 'ready'
+INITIALIZING PREPROCESSOR:
+Loading project tree '/home/v57111/mydata/Vines_parametrisation/gtree.dat'
+Loading jobs and dependence graph '"/home/v57111/mydata/Vines_parametrisation/gexec.cmd"'
+Loading project variables '/home/v57111/mydata/Vines_parametrisation/gvars.dat'
+--Get files to preprocess...
+--Create file handlers...
+--Read the toolflow...
+--Analyze tool-file dependencies...
+--Read all nodes to preprocess...
+--Group nodes into experiments...
+--Get all variables...
+--Get all parameters...
+PREPROCESSOR SUCCESSFULLY INITIALIZED.
+PREPROCESSING STEP 1:
+Reading file /home/v57111/mydata/Vines_parametrisation/sdevice_des.cmd
+Reading file /home/v57111/mydata/Vines_parametrisation/sdevice.par
+PREPROCESSING STEP 2:
+---------------------------------------
+Preprocessing file /home/v57111/mydata/Vines_parametrisation/sdevice_des.cmd for node 2
+'@tdr@' creates dependences with the node(s) '1'
++++Preprocessing results written to /home/v57111/mydata/Vines_parametrisation/pp2_des.cmd
+The node '2' has dependencies to the node(s) '1'
+---------------------------------------
+Preprocessing file /home/v57111/mydata/Vines_parametrisation/sdevice.par for node 2
++++Preprocessing results written to /home/v57111/mydata/Vines_parametrisation/pp2_des.par
+The node '2' has dependencies to the node(s) '1'
+>>>>>>>>>> os_rm /home/v57111/mydata/Vines_parametrisation/n2_des.job
+local% submit job 2 for local execution
+>>>>>>>>>> job '2' status changed from 'ready' to 'pending'
+local% exec /CMC/tools/synopsys/sentaurus_vU-2022.12/bin/gjob -verbose -nice 19 --max_threads 1  -job 2 -swb_pid 52257 -gsub_pid 55517 -gsub_host vcl-vm0-155 -gsub_port 37552  "/home/v57111/mydata/Vines_parametrisation"
+>>>>>>>>>> job '2' status changed from 'pending' to 'running'
+12:18:00 Jul 27 2023     job 2 <sdevice> started on host 'vcl-vm0-155': "sdevice --max_threads 1  pp2_des.cmd"
+>>>>>>>>>> job '2' status changed from 'running' to 'failed'
+12:18:05 Jul 27 2023 --- job 2 <sdevice> exited abnormally: exit()
+
+SCHEDULING REPORT
++++ done     : 1
+--- failed   : 2
+
+12:18:07 Jul 27 2023 <Vines_parametrisation> failed
+>>>>>> Writing to status file 28

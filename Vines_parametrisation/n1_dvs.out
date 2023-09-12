@@ -1,0 +1,203 @@
+****************************************************************************
+***                      Sentaurus Structure Editor                      ***
+***                          Version U-2022.12                           ***
+***                      (2.7886616, x86_64, Linux)                      ***
+***                                                                      ***
+***               Copyright (C) 1994-2022 Synopsys, Inc.                 ***
+***        Portions of this software are owned by Spatial Corp.          ***
+***            Copyright (C) 1986-2022. All Rights Reserved.             ***
+***                                                                      ***
+***  This software and the associated documentation are confidential     ***
+***  and proprietary to Synopsys, Inc.  Your use or disclosure of this   ***
+***  software is subject to the terms and conditions of a written        ***
+***  license agreement between you, or your company, and Synopsys, Inc.  ***
+****************************************************************************
+
+Compiled Wed Nov  9 19:09:55 PST 2022 on: swe-vm-kcr-tcad02
+Running on: vcl-vm0-155
+Hardware type: x86_64
+OS name: Linux
+OS release: 3.10.0-1160.59.1.el7.x86_64
+OS version: #1 SMP Wed Feb 23 16:47:03 UTC 2022
+Process ID: 58466
+
+Warning: License feature sde_all is about to expire in 22 days
+Warning: License feature sde_all is about to expire in 22 days
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+****************************************************************************
+***                            Sentaurus Mesh                            ***
+***                          Version U-2022.12                           ***
+***                      (2.7893487, x86_64, Linux)                      ***
+***                                                                      ***
+***                       Copyright (C) 2005-2022                        ***
+***                            Synopsys, Inc.                            ***
+***                                                                      ***
+***  This software and the associated documentation are confidential     ***
+***  and proprietary to Synopsys, Inc.  Your use or disclosure of this   ***
+***  software is subject to the terms and conditions of a written        ***
+***  license agreement between you, or your company, and Synopsys, Inc.  ***
+****************************************************************************
+
+Compiled Mon Nov 14 18:34:06 PST 2022 on: swe-vm-kcr-tcad02
+Running on: vcl-vm0-155
+Hardware type: x86_64
+OS name: Linux
+OS release: 3.10.0-1160.59.1.el7.x86_64
+OS version: #1 SMP Wed Feb 23 16:47:03 UTC 2022
+Process ID: 59438
+
+Flags used:
+
+Warning: License feature Mesh2D_all is about to expire in 22 days
+** Generating 2d grid **
+
+Creating binary tree...done.
+Imprinting binary tree on the boundary...done.
+Optimizing boundary nodes...done.
+
+Number of vertices after binary tree generation : 
+  1719 (tree) + 275 (boundary)
+
+
+=================================  brep2d quality  =====================================
+minAngle: 90  [near (20 2)] at region=Charge_Sheet
+nVerts = 275  nTris = 279  nRegs = 7
+bmin: -0 -0
+bmax: 65 3.05
+min area: 0.000634766  max area: 4.0625  min edge length : 0.000634766
+total area  : 276.1 interface area: 140
+total volume: 117.25
+Conformal? true
+Are all boundaries on bbox? false
+==================================================================================
+** Delaunizing the mesh **
+
+Creating delaunizer input...done.
+Solving edges...done 
+Optimizing elements...done. (1765 vertices)
+Fixing diagonals...done.
+
+The final mesh has: 
+    1645 points.
+    3073 elements.
+       7 regions.
+Max. connectivity = 7 located at (52.8125;1.88242)
+
+
+==============================  tri-grid quality  ================================
+    0  10  20  30  40  50  60  70  80  90 100 110 120 130 140 150 160 170 180
+ %   32   1   1                   1   1  65                                
+---------------------------------------------------------------------------------
+minAngle: 0.00826381  maxAngle: 90
+nVerts = 1645  nTris = 3073  nMats = 5
+max connectivity (tris per node): 7
+bmin: -0 -0
+bmax: 65 3.05
+min edgeLength: 0.000292969  [near (22.3438 1.90015)]
+min volume: 4.57764e-05  max volume: 0.193604  Total volume: 152.25
+bbox  volume: 198.25
+Are all boundaries on bbox? false
+=================================================================================
+
+Smallest region: TopGe  Total volume: 1.25
+Interpolating data...done.
+Saving file n1_msh.tdr...done.
+
+===============================  Timer Report===================================
+              Total Mesh Generation Time:    0.0998s       100%
+                       Rate of #Vertices:  1.65e+04
+                          Rate of #Edges:  3.26e+04
+                          Rate of #Faces:  3.08e+04
+                       Rate of #Elements:         0
+
+                            Time Covered:         0s         0%
+
+
+
+
+Enabling MESA because GLX was not detected.
+AVX support detected. Using MESA with AVX support.
+
+****************************************************************************
+***                           Sentaurus Visual                           ***
+***                           Version U-2022.12                          ***
+***                      (2.7893487, x86_64, Linux)                      ***
+***                                                                      ***
+***                        Copyright (c) 2012-2022                       ***
+***                            Synopsys, Inc.                            ***
+***  This software and the associated documentation are confidential     ***
+***  and proprietary to Synopsys, Inc.  Your use or disclosure of this   ***
+***  software is subject to the terms and conditions of a written        ***
+***  license agreement between you, or your company, and Synopsys, Inc.  ***
+****************************************************************************
+
+Compiled Mon Nov 14 18:34:06 PST 2022 on swe-vm-kcr-tcad02
+
+Warning: License feature svisual_all is about to expire in 22 days
+Datexcodes: Found and Loaded at: '/CMC/tools/synopsys/sentaurus_vU-2022.12/tcad/current/lib/datexcodes.txt'.
+Tcl-Library: path added: '/CMC/tools/synopsys/sentaurus_vU-2022.12/tcad/current/lib/svisuallib'.
+Tcl-Library: path added: '/home/v57111/svisuallib'.
+Loading Custom Buttons interface ... version 45
+Loading Extraction Library Version 2.3
+Loading Internal Library Version 0.7
+Loading Physical Constants Library Version 0.4
+Loading IFM Data Post-Processing Library Version 1.3.0
+Loading RF Parameter Extraction Library Version 1.0.2
+Tcl-Library: files successfully loaded: '6'.

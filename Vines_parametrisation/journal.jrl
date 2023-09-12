@@ -1,0 +1,109 @@
+;;
+;; (journal:on "/home/v57111/mydata/Vines/journal.jrl")
+;; "/home/v57111/mydata/Vines/journal.jrl"
+(sdegeo:set-auto-region-naming OFF)
+;; #t
+(sdegeo:create-rectangle (position 0 -0.5 0) (position 65 0 0) "Silicon" "Substrate")
+;; #[body 5 1]
+(sdegeo:create-rectangle (position 0 0 0) (position 65 1.4 0) "Silicon" "Multiplication")
+;; #[body 6 1]
+(sdegeo:create-rectangle (position 20 1.4 0) (position 45 1.5 0) "Silicon" "Charge_Sheet")
+;; #[body 7 1]
+(sde:set-default-material "Germanium")
+;; "Silicon"
+(bound? (quote Absorber))
+;; #f
+(sdegeo:create-rectangle (position 20 1.5 0) (position 45 2.5 0) "Germanium" "Absorber")
+;; #[body 8 1]
+(sde:scale-scene 1.0 1.0 1.0)
+;; ()
+(sde:scale-scene 1.0 85.592011 1.0)
+;; ()
+(bound? (quote TopGe))
+;; #f
+(sdegeo:create-rectangle (position 20 2.5 0) (position 45 2.55 0) "Germanium" "TopGe")
+;; #[body 9 1]
+(sdegeo:define-contact-set "Top" 4 (color:rgb 1 0 0) "##")
+;; ()
+(sdegeo:define-contact-set "Bottom" 4 (color:rgb 0 1 0) "##")
+;; ()
+(sdegeo:set-current-contact-set "Top")
+;; ""
+(sdegeo:define-2d-contact (list (car (find-edge-id (position 25 2.55 0)))) "Top")Obsolete Scheme command: sdegeo:define-2d-contact. Please update your input script and replace it with sdegeo:set-contact.
+;; "Obsolete Scheme command: sdegeo:define-2d-contac ...
+(sdegeo:set-current-contact-set "none")
+;; "Top"
+(sdegeo:set-current-contact-set "Bottom")
+;; "none"
+(sdegeo:define-2d-contact (list (car (find-edge-id (position 10 -0.5 0)))) "Bottom")Obsolete Scheme command: sdegeo:define-2d-contact. Please update your input script and replace it with sdegeo:set-contact.
+;; "Obsolete Scheme command: sdegeo:define-2d-contac ...
+(sdedr:define-constant-profile "Const.Substrate" "PhosphorusActiveConcentration" 5e+19)
+;; #t
+(sdedr:define-constant-profile-region "PlaceCD.Substrate" "Const.Substrate" "Substrate")
+;; #t
+(sdedr:define-constant-profile "Const.Multiplication" "PhosphorusActiveConcentration" 1e+15)
+;; #t
+(sdedr:define-constant-profile-region "PlaceCD.Multiplication" "Const.Multiplication" "Multiplication")
+;; #t
+(sdedr:define-constant-profile "Const.Charge_Sheet" "BoronActiveConcentration" 1e+17)
+;; #t
+(sdedr:define-constant-profile-region "PlaceCD.Charge_Sheet" "Const.Charge_Sheet" "Charge_Sheet")
+;; #t
+(sdedr:define-constant-profile "Const.Multiplication" "DonorConcentration" 1e+15)
+;; #t
+(sdedr:define-constant-profile-region "PlaceCD.Multiplication" "Const.Multiplication" "Multiplication")
+;; #t
+(sdedr:define-constant-profile "Const.Absorber" "AcceptorConcentration" 3e+15)
+;; #t
+(sdedr:define-constant-profile-region "PlaceCD.Absorber" "Const.Absorber" "Absorber")
+;; #t
+(sdedr:define-constant-profile "Const.TopGe" "BoronActiveConcentration" 5e+19)
+;; #t
+(sde:scale-scene 1.000000 1.000000 1.000000)
+;; ()
+(extract-refwindow (sde:selected-entities) "RefEvalWin.Substrate")
+;; ("RefEvalWin.Substrate")
+(sdedr:define-refinement-size "RefinementDefinition.Substrate" 6 0.05 0.06 0.005 )
+;; #t
+(sdedr:define-refinement-placement "RefinementPlacement.Substrate" "RefinementDefinition.Substrate" (list "window" "RefEvalWin.Substrate" ) )
+;; #t
+(extract-refwindow (sde:selected-entities) "RefEvalWin.Multiplication")
+;; ("RefEvalWin.Multiplication")
+(extract-refwindow (sde:selected-entities) "RefEvalWin.Charge_Sheet")
+;; ("RefEvalWin.Charge_Sheet")
+(extract-refwindow (sde:selected-entities) "RefEvalWin.Absorber")
+;; ("RefEvalWin.Absorber")
+(extract-refwindow (sde:selected-entities) "RefEvalWin.TopGe")
+;; ("RefEvalWin.TopGe")
+(sdedr:define-refinement-size "RefinementDefinition.Multiplication" 6 0.15 0.06 0.015 )
+;; #t
+(sdedr:define-refinement-placement "RefinementPlacement.Multiplication" "RefinementDefinition.Multiplication" (list "window" "RefEvalWin.Multiplication" ) )
+;; #t
+(sdedr:define-refinement-size "RefinementDefinition.Charge_Sheet" 2.5 0.01 0.25 0.001 )
+;; #t
+(sdedr:define-refinement-placement "RefinementPlacement.Charge_Sheet" "RefinementDefinition.Charge_Sheet" (list "window" "RefEvalWin.Charge_Sheet" ) )
+;; #t
+(sdedr:define-refinement-size "RefinementDefinition.Absorber" 2.5 0.1 0.25 0.01 )
+;; #t
+(sdedr:define-refinement-placement "RefinementPlacement.Absorber" "RefinementDefinition.Absorber" (list "window" "RefEvalWin.Absorber" ) )
+;; #t
+(sdedr:define-refinement-size "RefinementDefinition.TopGe" 0.005 0.1 0.0005 0.01 )
+;; #t
+(sdedr:define-refinement-placement "RefinementPlacement.TopGe" "RefinementDefinition.TopGe" (list "window" "RefEvalWin.TopGe" ) )
+;; #t
+(sde:set-project-name "sde_dvs")
+;; "sde_dvs"
+(sdesnmesh:iocontrols "outputFile" "sde_dvs")
+;; #t
+(sde:set-meshing-command "snmesh")
+;; #t
+(sde:set-project-name "sde_dvs")
+;; "./sde_dvs"
+(sdesnmesh:iocontrols "outputFile" "sde_dvs")
+;; #t
+(sde:build-mesh "" "sde_dvs")
+"Meshing successful"
+;; #t
+(system:command "svisual sde_dvs_msh.tdr &")
+;; 0
+;; (journal:off)

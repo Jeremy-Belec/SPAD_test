@@ -1,0 +1,21 @@
+###########################################
+# Sentaurus Visual U-2022.12.
+# Tcl log file.
+#------------------------------------------
+# Date: Jul 27, 2023. 12:17:48.
+# Version: 34.2.7893487 (2.7893487)
+# Mode: Interactive (GUI).
+# Mesa: enabled.
+# Hostname: vcl-vm0-155.
+# Machine: Linux, x86_64, x86_64.
+# Kernel: 3.10.0-1160.59.1.el7.x86_64.
+###########################################
+
+load_file /home/v57111/mydata/Vines_parametrisation/n1_msh.tdr -fod
+create_plot -dataset n1_msh
+select_plots {Plot_n1_msh}
+#-> Plot_n1_msh
+#-> Plot_n1_msh
+#-> n1_msh
+exit 0
+ 

@@ -1,0 +1,6 @@
+
+ Region "Absorber" (Material "Germanium"): UNDEFINED model "Scharfetter"
+ Region "TopGe" (Material "Germanium"): UNDEFINED model "Scharfetter"
+
+ Check UNDEFINED Models or use Math{-CheckUndefinedModels} to skip this  !
+

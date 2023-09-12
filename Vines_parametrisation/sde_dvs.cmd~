@@ -1,0 +1,68 @@
+(sde:clear)
+(sdegeo:set-auto-region-naming OFF)
+
+;----------------------------------------------------------------------
+(sde:clear)
+; Setting parameters
+; - lateral
+(define Ltot   @Ltot@)                  ; [um] Total device length
+(define Labs   @Labs@)                  ; [um] Absorber length
+(define Xabs1 (/ (- Ltot Labs) 2) ) 	; [um] x-Position first vertex absorber
+(define Xabs2 (/ (+ Ltot Labs) 2) ) 	; [um] x-Position second vertex absorber
+
+; - thickness
+(define T_Substrate @T_Substrate@)		; [um] Thickness of substrate
+(define T_Multiplication @T_Multiplication@) 	; [um] Thickness of multiplication region
+(define T_Charge_Sheet @T_Charge_Sheet@)	; [um] Thickness of charge sheet
+(define T_Absorber @T_Absorber@) 		; [um] Thickness of absorber
+(define T_TopGe @T_TopGe@)			; [um] Thickness of top Ge layer
+
+; -position
+
+(define ySubstrate T_Substrate)
+(define yMultiplication (+ T_Multiplication T_Substrate) )
+(define yCharge_Sheet (+ yMultiplication T_Charge_Sheet) )
+(define yAbsorber (+ yCharge_Sheet T_Absorber) )
+(define yTopGe (+ yAbsorber T_TopGe) )
+
+
+;----------------------------------------------------------------------;
+; Define structure
+;----------------------------------------------------------------------;
+
+(sdegeo:create-rectangle (position 0 0 0) (position Ltot ySubstrate 0) "Silicon" "Substrate")
+(sdegeo:create-rectangle (position 0 ySubstrate 0) (position Ltot yMultiplication 0) "Silicon" "Multiplication")
+(sdegeo:create-rectangle (position Xabs1 yMultiplication 0) (position Xabs2 yCharge_Sheet 0) "Silicon" "Charge_Sheet")
+;(sde:set-default-material "Germanium")
+(sdegeo:create-rectangle (position Xabs1 yCharge_Sheet 0) (position Xabs2 yAbsorber 0) "Germanium" "Absorber")
+(sdegeo:create-rectangle (position Xabs1 yAbsorber 0) (position Xabs2 yTopGe 0) "Germanium" "TopGe")
+
+
+(sdegeo:define-contact-set "Top" 4 (color:rgb 1 0 0) "##")
+(sdegeo:define-contact-set "Bottom" 4 (color:rgb 0 1 0) "##")
+(sdegeo:set-contact (find-edge-id (position Xabs1 yTopGe 0)) "Top")
+(sdegeo:set-contact (find-edge-id (position Labs 0 0)) "Bottom")
+
+
+;----------------------------------------------------------------------;
+; Meshing building
+;----------------------------------------------------------------------;
+; Meshing the device structure
+(sde:set-project-name "n@node@")
+(sdesnmesh:iocontrols "outputFile" "n@node@")
+(sde:set-meshing-command "snmesh")
+(sde:set-project-name "n@node@")
+(sdesnmesh:iocontrols "outputFile" "n@node@")
+(sde:build-mesh "" "n@node@")
+(system:command "svisual n@node@_msh.tdr &")
+(sde:save-model "n@node@")
+
+
+;(sde:set-project-name "sde_dvs")
+;(sde:save-model "n@node@_mesh")
+;(sdesnmesh:iocontrols "outputFile" "sde_dvs")
+;(sde:set-meshing-command "snmesh")
+;(sde:set-project-name "sde_dvs")
+;(sdesnmesh:iocontrols "outputFile" "sde_dvs")
+;(sde:build-mesh "" "sde_dvs")
+;(system:command "svisual sde_dvs_msh.tdr &")

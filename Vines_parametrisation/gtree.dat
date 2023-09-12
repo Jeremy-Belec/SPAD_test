@@ -1,0 +1,35 @@
+# Copyright (C) 1994-2019 Synopsys Inc.
+# swbtree vcurrent
+
+# --- simulation flow
+sde sde "" {}
+sde Labs "20" {25}
+sde Ltot "65" {65}
+sde T_Substrate "0.5" {0.5}
+sde T_Multiplication "1.5" {1.4}
+sde T_Charge_Sheet "0.1" {0.1}
+sde T_Absorber "0.9" {1}
+sde T_TopGe "0.05" {0.05}
+sdevice sdevice "" {}
+sdevice Vp "2" {5}
+# --- variables
+# --- scenarios and parameter specs
+scenario default Labs ""
+scenario default Ltot ""
+scenario default T_Substrate ""
+scenario default T_Multiplication ""
+scenario default T_Charge_Sheet ""
+scenario default T_Absorber ""
+scenario default T_TopGe ""
+scenario default Vp ""
+# --- simulation tree
+0 5 0 {} {default} 0
+1 6 5 {25} {default} 0
+2 7 6 {65} {default} 0
+3 8 7 {0.5} {default} 0
+4 9 8 {1.4} {default} 0
+5 10 9 {0.1} {default} 0
+6 11 10 {1} {default} 0
+7 1 11 {0.05} {default} 0
+8 3 1 {} {default} 0
+9 2 3 {5} {default} 0

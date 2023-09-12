@@ -1,0 +1,21 @@
+###########################################
+# Sentaurus Visual U-2022.12.
+# Tcl log file.
+#------------------------------------------
+# Date: Jun 28, 2023. 10:46:04.
+# Version: 34.2.7893487 (2.7893487)
+# Mode: Interactive (GUI).
+# Mesa: enabled.
+# Hostname: vcl-vm0-83.
+# Machine: Linux, x86_64, x86_64.
+# Kernel: 3.10.0-1160.59.1.el7.x86_64.
+###########################################
+
+load_file /home/v57111/mydata/Vines_parametrisation/sde_dvs_bnd.tdr -fod
+create_plot -dataset sde_dvs_bnd
+select_plots {Plot_sde_dvs_bnd}
+#-> Plot_sde_dvs_bnd
+#-> Plot_sde_dvs_bnd
+#-> sde_dvs_bnd
+exit 0
+ 

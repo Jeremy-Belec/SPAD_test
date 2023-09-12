@@ -1,0 +1,5 @@
+DATE: 05/23/23-11:07:39.123 cmlog.txt
+
+05/23/23-11:07:39.183|This localhost (server) information:
+	Name:    vcl-vm0-101
+	Address: 172.16.84.101

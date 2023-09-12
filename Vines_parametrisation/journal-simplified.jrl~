@@ -1,0 +1,3 @@
+(bound? (quote region_1))
+(sdegeo:create-rectangle (position -1.346602 -0.645434 0) (position 0.791639 -1.168317 0) "Silicon" "region_1")
+(roll)
