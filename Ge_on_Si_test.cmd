@@ -2,11 +2,11 @@
 
 #####################################################################################################################
 #Definition of dimensions variables:
-(define A 1)
-(define B 3)
-(define C 1)
-(define D 8)
-(define E 1)
+(define A 0.05)
+(define B 1)
+(define C 0.1)
+(define D 1.5)
+(define E 0.15)
 
 (define L_contact 12)
 (define L_charge 16)
