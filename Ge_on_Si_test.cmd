@@ -125,13 +125,13 @@
 (sdedr:define-refinement-size "RefinementDefinition.Si_mult" (/ L_mult 10) (/ C 10) (/ L_mult 100) (/ C 100))
 (sdedr:define-refinement-placement "RefinementPlacement.Si_mult" "RefinementDefinition.Si_mult" (list "window" "RefEvalWin.Si_mult"))
 
-(sdedr:define-refeval-window "RefEvalWin.Si_mult" "Rectangle"  (position (* L_charge 0.5) (+ A B) 0) (position (* L_mult 0.5) (+ C (+ A B)) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_mult" (/ L_mult 10) (/ C 10) (/ L_mult 100) (/ C 100))
-(sdedr:define-refinement-placement "RefinementPlacement.Si_mult" "RefinementDefinition.Si_mult" (list "window" "RefEvalWin.Si_mult"))
+(sdedr:define-refeval-window "RefEvalWin.Si_mult2" "Rectangle"  (position (* L_charge 0.5) (+ A B) 0) (position (* L_mult 0.5) (+ C (+ A B)) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Si_mult2" (/ L_mult 10) (/ C 10) (/ L_mult 100) (/ C 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Si_mult2" "RefinementDefinition.Si_mult2" (list "window" "RefEvalWin.Si_mult2"))
 
-(sdedr:define-refeval-window "RefEvalWin.Si_mult" "Rectangle"  (position (* L_dev -0.5) (+ C (+ A B)) 0) (position (* L_dev 0.5) (+ D (+ C (+ A B))) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_mult" (/ L_mult 10) (/ D 10) (/ L_mult 100) (/ D 100))
-(sdedr:define-refinement-placement "RefinementPlacement.Si_mult" "RefinementDefinition.Si_mult" (list "window" "RefEvalWin.Si_mult"))
+(sdedr:define-refeval-window "RefEvalWin.Si_mult3" "Rectangle"  (position (* L_dev -0.5) (+ C (+ A B)) 0) (position (* L_dev 0.5) (+ D (+ C (+ A B))) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Si_mult3" (/ L_mult 10) (/ D 10) (/ L_mult 100) (/ D 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Si_mult3" "RefinementDefinition.Si_mult3" (list "window" "RefEvalWin.Si_mult3"))
 
 
 #    Si contact
