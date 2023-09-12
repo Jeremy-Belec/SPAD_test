@@ -91,14 +91,14 @@
 ; Meshing building
 ;----------------------------------------------------------------------;
 ; Meshing the device structure
-(sde:set-project-name "n1")
-(sdesnmesh:iocontrols "outputFile" "n1")
+(sde:set-project-name "n@node@")
+(sdesnmesh:iocontrols "outputFile" "n@node@")
 (sde:set-meshing-command "snmesh")
-(sde:set-project-name "n1")
-(sdesnmesh:iocontrols "outputFile" "n1")
-(sde:build-mesh "" "n1")
-(system:command "svisual n1_msh.tdr &")
-(sde:save-model "n1")
+(sde:set-project-name "n@node@")
+(sdesnmesh:iocontrols "outputFile" "n@node@")
+(sde:build-mesh "" "n@node@")
+(system:command "svisual n@node@_msh.tdr &")
+(sde:save-model "n@node@")
 
 
 ;(sde:set-project-name "sde_dvs")
