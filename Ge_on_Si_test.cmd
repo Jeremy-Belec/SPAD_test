@@ -147,12 +147,4 @@
 
 #                                                      Building the meshing
 
-(sde:set-project-name "n1")
-(sdesnmesh:iocontrols "outputFile" "n1")
-(sde:set-meshing-command "snmesh")
-(sde:set-project-name "n1")
-(sdesnmesh:iocontrols "outputFile" "n1")
-(sde:build-mesh "" "n1")
-(system:command "svisual n1_msh.tdr &")
-(sde:save-model "n1")
-
+(sde:build-mesh "snmesh" " " "n@node@_msh")
