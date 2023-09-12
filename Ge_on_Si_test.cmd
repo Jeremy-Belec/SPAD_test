@@ -23,23 +23,23 @@
 
 #Definition of the device
 
-(sdegeo:create-rectangle (position (* L_contact -0.5) 0 0) (position (* L_contact 0.5) (* A -1) 0) "Germanium" "Ge_contact_layer")
+(sdegeo:create-rectangle (position (* L_contact -0.5) 0 0) (position (* L_contact 0.5) A 0) "Germanium" "Ge_contact_layer")
 
-(sdegeo:create-rectangle (position (* L_mult -0.5) (* A -1) 0) (position (* L_mult 0.5) (- B (* A -1)) 0) "Germanium" "Ge_absorption_layer")
+(sdegeo:create-rectangle (position (* L_mult -0.5) A 0) (position (* L_mult 0.5) (+ A B) 0) "Germanium" "Ge_absorption_layer")
 
-(sdegeo:create-rectangle (position (* L_mult -0.5) (- B (* A -1)) 0) (position (* L_charge -0.5) (- C (- B (* A -1))) 0) "Silicium" "Si_multiplication_layer")
+(sdegeo:create-rectangle (position (* L_mult -0.5) (+ A B) 0) (position (* L_charge -0.5) (+ C (+ A B)) 0) "Silicium" "Si_multiplication_layer")
 
-(sdegeo:create-rectangle (position (* L_charge 0.5) (- B (* A -1)) 0) (position (* L_mult 0.5) (- C (- B (* A -1))) 0) "Silicium" "Si_multiplication_layer")
+(sdegeo:create-rectangle (position (* L_charge 0.5) (+ A B) 0) (position (* L_mult 0.5) (+ C (+ A B)) 0) "Silicium" "Si_multiplication_layer")
 
 (sdegeo:set-default-boolean "AB")
 
-(sdegeo:create-rectangle (position (* L_dev -0.5) (- C (- B (* A -1))) 0) (position (* L_dev 0.5) (- D (- C (- B (* A -1)))) 0) "Silicium" "Si_multiplication_layer")
+(sdegeo:create-rectangle (position (* L_dev -0.5) (+ C (+ A B)) 0) (position (* L_dev 0.5) (+ D (+ C (+ A B))) 0) "Silicium" "Si_multiplication_layer")
 
 (sdegeo:set-default-boolean "ABA")
 
-(sdegeo:create-rectangle (position (* L_charge -0.5) (- B (* A -1)) 0) (position (* L_charge 0.5) (- C (- B (* A -1))) 0) "Silicium" "Si_charge_layer")
+(sdegeo:create-rectangle (position (* L_charge -0.5) (+ A B) 0) (position (* L_charge 0.5) (+ C (+ A B)) 0) "Silicium" "Si_charge_layer")
 
-(sdegeo:create-rectangle (position (* L_dev -0.5) (- D (- C (- B (* A -1)))) 0) (position (* L_dev 0.5) (- E (- D (- C (- B (* A -1))))) 0) "Silicium" "Si_contact_layer")
+(sdegeo:create-rectangle (position (* L_dev -0.5) (+ D (+ C (+ A B))) 0) (position (* L_dev 0.5) (+ E(+ D (+ C (+ A B)))) 0) "Silicium" "Si_contact_layer")
 
 
 #####################################################################################################################
