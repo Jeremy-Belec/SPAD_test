@@ -2,6 +2,7 @@
 
 #####################################################################################################################
 #Definition of dimensions variables:
+
 (define A 0.05) #Ge contact thickness (p)[um]
 (define B 1) #Ge absorption layer thickness (p)[um]
 (define C 0.1) #Si charge sheet thickness (p)[um]
