@@ -15,8 +15,10 @@
 
 #Definition of Doping variables
 
-(define P_cont 1e19)
+(define P_cont 5e19)
+(define P_absorber 3e15)
 (define P_charge 1e17)
+(define P_multi 1e15)
 (define N_cont 1e19)
 #####################################################################################################################
 
@@ -62,10 +64,16 @@
 (sdedr:define-constant-profile "p_contact_profile" "BoronActiveConcentration" P_cont)
 (sdedr:define-constant-profile-region "p_contact_region" "p_contact_profile" "Ge_contact_layer")
 
+(sdedr:define-constant-profile "p_contact_profile" "BoronActiveConcentration" P_absorber)
+(sdedr:define-constant-profile-region "p_contact_region" "p_contact_profile" "Ge_absorption_layer")
+
 (sdedr:define-constant-profile "p_charge_profile" "BoronActiveConcentration" P_charge)
 (sdedr:define-constant-profile-region "p_charge_region" "p_charge_profile" "Si_charge_layer")
 
 #Doping of n regions
+(sdedr:define-constant-profile "n_contact_profile" "PhosphorusActiveConcentration" N_multi)
+(sdedr:define-constant-profile-region "n_contact_region" "n_contact_profile" "Si_multiplication_layer")
+
 (sdedr:define-constant-profile "n_contact_profile" "PhosphorusActiveConcentration" N_cont)
 (sdedr:define-constant-profile-region "n_contact_region" "n_contact_profile" "Si_contact_layer")
 
