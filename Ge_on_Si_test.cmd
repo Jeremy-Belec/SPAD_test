@@ -2,20 +2,20 @@
 
 #####################################################################################################################
 #                                             Definition of dimensions variables:
-(define A 0.05)
-(define B 1)
-(define C 0.1)
-(define D 1.5)
-(define E 0.15)
+(define A 0.05)        #  Ge contact thickness (p)                  [μm]
+(define B 1)            #  Ge absorption layer thickness (p)        [μm]
+(define C 0.1)          #  Si charge sheet thickness (p)            [μm]
+(define D 1.5)          #  Si multiplication region thickness (n)    [μm]
+(define E 0.15)          #  Si contact thickness (n)                [μm]
 
-(define L_contact 12)
-(define L_charge 16)
-(define L_mult 20)
-(define L_dev 30)
+(define L_contact 12)      #Length of Ge contact              [μm]
+(define L_charge 16)        #Length of Si charge sheet        [μm]
+(define L_mult 20)          #Length of Si multiplication region    [μm]
+(define L_dev 30)            #Length of device                [μm]
 
 #                                                Definition of Doping variables
 
-(define P_cont 5e19)
+(define P_cont 5e19)      
 (define P_absorber 3e15)
 (define P_charge 1e17)
 (define P_multi 1e15)
