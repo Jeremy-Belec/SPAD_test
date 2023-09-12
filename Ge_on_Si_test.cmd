@@ -15,11 +15,11 @@
 
 #                                                Definition of Doping variables
 
-(define P_cont 5e19)      
-(define P_absorber 3e15)
-(define P_charge 1e17)
-(define P_multi 1e15)
-(define N_cont 1e19)
+(define P_cont 5e19)      #    P doping of P-contact
+(define P_absorber 3e15)    #    P doping of absorber
+(define P_charge 1e17)      #    P doping of charge sheet
+(define N_multi 1e15)      #    N doping of multiplication region
+(define N_cont 1e19)      #     N doping of N-contact
 #####################################################################################################################
 
 #                                                   Definition of the device
