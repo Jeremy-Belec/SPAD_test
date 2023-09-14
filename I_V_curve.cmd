@@ -1,16 +1,14 @@
 File {
 Grid = "@tdr@"
-Parameter = "mos"
-  Plot = "@tdrdat@"
+Plot = "@tdrdat@"
 Current = "@plot@"
 Output = "@log@"
 }
 
 Electrode {
-{ Name="source" Voltage=0.0 }
-{ Name="drain" Voltage=0.0 }
-{ Name="gate" Voltage=0.0 Barrier=-0.55 }
-{ Name="substrate" Voltage=0.0 }
+{ Name="p_contact" Voltage=0.0 }
+{ Name="n_contact" Voltage=0.0 }
+
 }
 Physics {
 AreaFactor=0.4
@@ -24,7 +22,7 @@ hAvalanche(Eparallel) )
 EffectiveIntrinsicDensity (BandGapNarrowing (OldSlotboom))
 }
 
-#Add germanium and silicium traps
+*Add germanium and silicon traps
 
 Plot {
 eDensity hDensity eCurrent hCurrent
@@ -46,13 +44,13 @@ Math {
 Extrapolate
 RelErrControl
 Iterations=20
-BreakCriteria {Current(Contact="drain" Absval=3e-4)
+BreakCriteria {Current(Contact="n_contact" Absval=3e-4)
 }
 }
 
 
 Solve {
-# initial gate voltage Vgs=0.0V
+# initial n_contac voltage Vgs=0.0V
 Poisson
 Coupled { Poisson Electron }
 Coupled { Poisson Electron Hole eTemperature }
@@ -61,11 +59,7 @@ Save (FilePrefix="vg0")
 # first curve
 Load(FilePrefix="vg0")
 NewCurrentPrefix="vg0_"
-Quasistationary
-(InitialStep=0.01 Maxstep=0.1 MinStep=0.0001
-Goal{ name="drain" voltage=10.0 }
+Quasistationary(InitialStep=0.01 Maxstep=0.1 MinStep=0.0001
+Goal{ name="n_contact" voltage=10.0 }
 )
-{ Coupled {Poisson Electron Hole eTemperature}
-CurrentPlot (time=
-(range = (0 0.2) intervals=20;
-range = (0.2 1.0)))}
+{ Coupled {Poisson Electron Hole eTemperature} CurrentPlot (time=(range = (0 0.2) intervals=20;range = (0.2 1.0)))}}
