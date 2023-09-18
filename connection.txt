@@ -1,0 +1,25 @@
+source /CMC/scripts/synopsys.sentaurus.2022.12.csh
+
+swb &
+
+
+
+
+
+;------------------------------------------------;
+#Add materials
+
+1) create .par file with the new material parameters and place it in working directory
+2) add new materials to  datex text file and place it in working directory.
+3)create a file models.par in directory with the following syntax for all materials
+Material = "<material name>"  {insert = "<Material name.par>"}
+.....etc
+4)in sdevice commands ---->  File section
+File {
+............
+parameter = "models.par"
+..........
+}
+
+
+
