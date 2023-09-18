@@ -1,8 +1,13 @@
 File {
 Grid = "@tdr@"
-Plot = "@tdrdat@"
+parameter = "pp2_des.par"
+Grid = "n1_msh.tdr"
+Plot = "n2_des.tdr" 
+*"@tdrdat@"
 Current = "@plot@"
-Output = "@log@"
+Output = "n2_des.log"
+*"@log@"
+Parameters = "models.par"
 }
 
 Electrode {
