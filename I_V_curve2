@@ -20,10 +20,21 @@ Electrode{
 
 *---------------Physics---------------*
 
-Physics{
-	Fermi
-EffectiveIntrinsicDensity( OldSlotboom)
-Recombination(SRH)
+ Physics (material="Silicon") { 
+
+ 	Mobility( 
+		DopingDep(Unibo)
+            	HighFieldsat(GradQuasiFermi)
+ 	  	)
+  	Recombination( 
+		 SRH(DopingDep TempDep)
+		 Auger
+  		##hAvalanche(UniBo) eAvalanche(UniBo)  		
+  		hAvalanche eAvalanche 		
+		)
+  	EffectiveIntrinsicDensity(OldSlotboom)
+
+
 }
 
 
