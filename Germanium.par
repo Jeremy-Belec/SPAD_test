@@ -1334,7 +1334,7 @@ Scharfetter * relation and trap level for SRH recombination:
 	Tcoeff	= 2.55 ,	2.55	# [1]
 	Etrap	= 0.0000e+00	# [eV]
 }
-
+*Tau rad = 1.7 mus
 
 Schottky{
         *Based on IEDM 2016 Short Course page 21 Source: Prof. Saraswat
