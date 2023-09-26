@@ -1326,8 +1326,8 @@ Scharfetter * relation and trap level for SRH recombination:
 { * tau = taumin + ( taumax - taumin ) / ( 1 + ( N/Nref )^gamma)
   * tau(T) = tau * ( (T/300)^Talpha )          (TempDep)
   * tau(T) = tau * exp( Tcoeff * ((T/300)-1) ) (ExpTempDep)
-	taumin	= 117e-09 ,	117e-09	# [s]
-	taumax	= 716e-09 ,	716e-09	# [s]
+	taumin	= 1e-6 ,	1e-6	# [s]
+	taumax	= 100e-06 ,	100e-6	# [s]
 	Nref	= 1.0000e+16 ,	1.0000e+16	# [cm^(-3)]
 	gamma	= 1 ,	1	# [1]
 	Talpha	= -1.5000e+00 ,	-1.5000e+00	# [1]
