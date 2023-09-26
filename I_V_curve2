@@ -28,11 +28,13 @@ Electrode{
  	  	)
   	Recombination( 
 		 SRH(DopingDep TempDep)
-		 Auger
+		 Band2Band Auger
   		##hAvalanche(UniBo) eAvalanche(UniBo)  		
   		hAvalanche eAvalanche 		
 		)
   	EffectiveIntrinsicDensity(OldSlotboom)
+	eMobility(DopingDependance HighFieldSaturation Enormal)
+	hMobility(DopingDependance HighFieldSaturation Enormal)
 
 
 }
@@ -40,6 +42,30 @@ Electrode{
 
 *---------------Plot---------------*
 
+Plot {
+	
+        Current/Vector	
+	eCurrent/Vector
+	hCurrent/Vector
+	eDensity
+	hDensity
+	ElectricField/Vector
+	Potential
+	CurrentPotential
+  	DopingConcentration	
+	eMobility
+	hMobility
+	DonorConcentration
+	AcceptorConcentration
+ 	AvalancheGeneration
+ 	
+ 	eAvalanche hAvalanche
+ 	eLifeTime hLifeTime
+	ConductionBand
+	ValenceBand
+
+
+}
 
 *---------------Math---------------*
 
