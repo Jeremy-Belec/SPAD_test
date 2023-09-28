@@ -5,9 +5,9 @@ File {
 	Grid = "n1_msh.tdr"
 	Parameter= "models.par"
 *-Output	
-	Current=   "@plot@"
-	Plot=      "@tdrdat@"
-	Output=    "@log@"
+	Current=   "n4_current_des.tdr"
+	Plot=      "n4_des.tdr"
+	Output=    "n4_des.log"
 }
 
 Electrode {
