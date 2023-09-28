@@ -91,14 +91,14 @@ Plot {
 *- Generation/Recombination	
   	srhRecombination AugerRecombination TotalRecombination SurfaceRecombination Band2Band RadiativeRecombination
   	eLifeTime hLifeTime
-#if "@light@" == "on"	
+
 *- Optical Generation	
     ComplexRefractiveIndex QuantumYield
 	OpticalIntensity AbsorbedPhotonDensity OpticalGeneration
 * Visualizing raytracing. Can be time consuming to plot.  
 * RayTree cannot be  plotted if CompactMemoryOption is specified in Physics section. 	
 *  	RayTrees
-#endif
+
 }	
 
 Math {
@@ -115,20 +115,16 @@ Math {
 Solve {
 	NewCurrentPrefix= "tmp_"
 	Poisson
-	#if "@light@" == "off"
-  	Plot (FilePrefix= "n@node@_eqbm")
-	#endif	
 	NewCurrentPrefix= ""
 	Coupled (Iterations= 100){ Poisson Electron Hole }	
-	#if "@light@" == "on"
   	Plot (FilePrefix= "n@node@_photo")
-	#endif	
+
 			
 	*ramp voltage at anode from 0V to -0.3 V	
 	Quasistationary ( 
 		InitialStep= 1e-2 Increment= 1.4
 		MinStep= 1e-6     MaxStep= 0.01	
-		Goal { Name="p_contact" Voltage= -0.3 }
+		Goal { Name="p_contact" Voltage= -10 }
 	){ Coupled { Poisson Electron Hole } }
 
 	System("rm -f tmp*") *remove the plot we don't need anymore.	
