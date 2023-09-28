@@ -49,8 +49,7 @@ Physics	{
 			Polarization= 0.5				* Unpolarized light
 			Theta= 180						* Normal incidence,	in -ve y direction
 			Window(
-				Origin= (0, 0)			* Shift origin 0.1 um below the bottom photodiode surface
-				Line(x1= -15 x2= 15)		* Illumination window covers width of photodiode. 
+				[(0 -15 0) (0 15 0)]
 			)			
 		) * end Excitation
 		OpticalSolver (
