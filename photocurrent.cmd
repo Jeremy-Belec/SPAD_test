@@ -85,7 +85,7 @@ Plot {
 	SpaceCharge	
 *- Currents	
 	Current/Vector eCurrent/Vector  hCurrent/Vector
-  	CurrentPotential	* for visualizing current lines
+  	CurrentPotential	* visualizing current lines
   	eMobility hMobility
 	eVelocity hVelocity
 *- Generation/Recombination	
@@ -96,7 +96,7 @@ Plot {
     ComplexRefractiveIndex QuantumYield
 	OpticalIntensity AbsorbedPhotonDensity OpticalGeneration
 * Visualizing raytracing. Can be time consuming to plot.  
-* RayTree cannot be  plotted if CompactMemoryOption is specified in Physics section. 	
+* RayTree cannot be  plotted CompactMemoryOption is specified in Physics section. 	
 *  	RayTrees
 
 }	
