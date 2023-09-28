@@ -47,9 +47,8 @@ Physics	{
 			Wavelength= 2  				* Incident light wavelength [um]
 			Intensity= 1  				* Incident light intensity [W/cm2]	
 			Polarization= 0.5				* Unpolarized light
-			Theta= 0						* Normal incidence,	in -ve x direction
-			Window(
-				[(0 -15 0) (0 15 0)]
+			Theta= 90						* Normal incidence,	in -ve x direction
+			Window(Line(x1= -15 x2= 15)
 			)			
 		) * end Excitation
 		OpticalSolver (
