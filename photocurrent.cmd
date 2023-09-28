@@ -1,0 +1,144 @@
+#setdep @node|sde@
+
+File {
+*-Input		
+	Grid = "n1_msh.tdr"
+	Parameter= "models.par"
+*-Output	
+	Current=   "@plot@"
+	Plot=      "@tdrdat@"
+	Output=    "@log@"
+}
+
+Electrode {
+	{ Name= "n_contact"  Voltage= 0 }
+	{ Name= "p_contact"  Voltage= 0 }
+}
+
+#if "@light@" == "on"
+	RayTraceBC {
+		{ Name= "p_contact"
+			Reflectivity= 1.0
+		}
+		{ Name= "n_contact"
+			Reflectivity= 1.0
+		}
+		
+		{ Name= "RTBCleftContact"
+			Reflectivity= 1.0
+		}
+		{ Name= "RTBCrightContact"
+			Reflectivity= 1.0
+		}		
+	}
+#endif
+
+Physics	{	
+	AreaFactor= @areafactor@	
+	Temperature= @temp@	
+	Thermionic
+	HeteroInterfaces	 
+	Mobility(HighFieldSaturation)
+	EffectiveIntrinsicDensity(NoFermi) 
+	Recombination(
+		SRH 
+		Auger
+	)	
+	#if "@light@" == "on"	
+	Optics (
+    	ComplexRefractiveIndex (WavelengthDep(Real Imag))
+		OpticalGeneration (
+			QuantumYield (StepFunction (EffectiveBandgap)) * number of generated carriers per photon, default: 1
+			ComputeFromMonochromaticSource
+		) * end OpticalGeneration
+		Excitation (
+			Wavelength= 9.5  				* Incident light wavelength [um]
+			Intensity= 0.01  				* Incident light intensity [W/cm2]	
+			Polarization= 0.5				* Unpolarized light
+			Theta= 180						* Normal incidence,	in -ve y direction
+			Window(
+				Origin= (0, 0.1)			* Shift origin 0.1 um below the bottom photodiode surface
+				Line(x1= 0 x2= @wtot@)		* Illumination window covers width of photodiode. 
+			)			
+		) * end Excitation
+		OpticalSolver (
+      		RayTracing (	        		
+				RayDistribution(
+					Mode= AutoPopulate
+					NumberOfRays= 300				* Number of rays in the illumination window
+				)
+				CompactMemoryOption
+				DepthLimit= 1000 					* Stop tracing a ray after passing through more than x material boundaries
+				MinIntensity= 1e-5					* Stop tracing a ray when its intensity becomes less than x times the original intensity			
+			) * end RayTracing
+		)	* end OpticalSolver		
+	) * end Optics
+	#endif
+}	
+
+Plot {    
+*- Doping and mole fraction profiles	
+	Doping DonorConcentration AcceptorConcentration	
+	xMoleFraction
+*- Band structure
+	BandGap BandGapNarrowing ElectronAffinity
+	ConductionBandEnergy ValenceBandEnergy
+	eQuasiFermiEnergy hQuasiFermiEnergy		
+*- Carrier Densities:
+  	eDensity hDensity
+	EffectiveIntrinsicDensity IntrinsicDensity
+	eEquilibriumDensity hEquilibriumDensity
+*- Fields, Potentials and Charge distributions
+	ElectricField/Vector
+	Potential
+	SpaceCharge	
+*- Currents	
+	Current/Vector eCurrent/Vector  hCurrent/Vector
+  	CurrentPotential	* for visualizing current lines
+  	eMobility hMobility
+	eVelocity hVelocity
+*- Generation/Recombination	
+  	srhRecombination AugerRecombination TotalRecombination SurfaceRecombination Band2Band RadiativeRecombination
+  	eLifeTime hLifeTime
+#if "@light@" == "on"	
+*- Optical Generation	
+    ComplexRefractiveIndex QuantumYield
+	OpticalIntensity AbsorbedPhotonDensity OpticalGeneration
+* Visualizing raytracing. Can be time consuming to plot.  
+* RayTree cannot be  plotted if CompactMemoryOption is specified in Physics section. 	
+*  	RayTrees
+#endif
+}	
+
+Math {
+	Extrapolate
+	RelErrcontrol
+	Digits= 5
+	Notdamped= 20
+	Iterations= 12
+	ElementEdgeCurrent
+	ErrRef(electron)= 1e3
+	ErrRef(hole)= 1e3				   
+}
+
+Solve {
+	NewCurrentPrefix= "tmp_"
+	Poisson
+	#if "@light@" == "off"
+  	Plot (FilePrefix= "n@node@_eqbm")
+	#endif	
+	NewCurrentPrefix= ""
+	Coupled (Iterations= 100){ Poisson Electron Hole }	
+	#if "@light@" == "on"
+  	Plot (FilePrefix= "n@node@_photo")
+	#endif	
+			
+	*ramp voltage at anode from 0V to -0.3 V	
+	Quasistationary ( 
+		InitialStep= 1e-2 Increment= 1.4
+		MinStep= 1e-6     MaxStep= 0.01	
+		Goal { Name="p_contact" Voltage= -0.3 }
+	){ Coupled { Poisson Electron Hole } }
+
+	System("rm -f tmp*") *remove the plot we don't need anymore.	
+}
