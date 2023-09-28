@@ -15,27 +15,19 @@ Electrode {
 	{ Name= "p_contact"  Voltage= 0 }
 }
 
-#if "@light@" == "on"
-	RayTraceBC {
+
+RayTraceBC {
 		{ Name= "p_contact"
 			Reflectivity= 1.0
 		}
 		{ Name= "n_contact"
 			Reflectivity= 1.0
-		}
-		
-		{ Name= "RTBCleftContact"
-			Reflectivity= 1.0
-		}
-		{ Name= "RTBCrightContact"
-			Reflectivity= 1.0
 		}		
 	}
-#endif
 
-Physics	{	
-	AreaFactor= @areafactor@	
-	Temperature= @temp@	
+
+Physics	{		
+	Temperature= 77	
 	Thermionic
 	HeteroInterfaces	 
 	Mobility(HighFieldSaturation)
@@ -44,21 +36,21 @@ Physics	{
 		SRH 
 		Auger
 	)	
-	#if "@light@" == "on"	
+	
 	Optics (
     	ComplexRefractiveIndex (WavelengthDep(Real Imag))
 		OpticalGeneration (
-			QuantumYield (StepFunction (EffectiveBandgap)) * number of generated carriers per photon, default: 1
+			QuantumYield (StepFunction (EffectiveBandgap)) 
 			ComputeFromMonochromaticSource
-		) * end OpticalGeneration
+		) 
 		Excitation (
-			Wavelength= 9.5  				* Incident light wavelength [um]
-			Intensity= 0.01  				* Incident light intensity [W/cm2]	
+			Wavelength= 2  				* Incident light wavelength [um]
+			Intensity= 1  				* Incident light intensity [W/cm2]	
 			Polarization= 0.5				* Unpolarized light
 			Theta= 180						* Normal incidence,	in -ve y direction
 			Window(
 				Origin= (0, 0.1)			* Shift origin 0.1 um below the bottom photodiode surface
-				Line(x1= 0 x2= @wtot@)		* Illumination window covers width of photodiode. 
+				Line(x1= -15 x2= 15)		* Illumination window covers width of photodiode. 
 			)			
 		) * end Excitation
 		OpticalSolver (
@@ -73,7 +65,6 @@ Physics	{
 			) * end RayTracing
 		)	* end OpticalSolver		
 	) * end Optics
-	#endif
 }	
 
 Plot {    
