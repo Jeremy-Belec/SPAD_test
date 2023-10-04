@@ -107,7 +107,7 @@
 
 #Si Charge sheet
 (sdedr:define-refeval-window "RefEvalWin.Si_charge_layer" "Rectangle"  (position (+ A B) (* L_charge -0.5) 0) (position (+ C (+ A B)) (* L_charge 0.5) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_charge_layer" (/ B 10)(/ L_mult 10) (/ C 100)(/ L_mult 100))
+(sdedr:define-refinement-size "RefinementDefinition.Si_charge_layer" (/ C 10)(/ L_mult 10) (/ C 100)(/ L_mult 100))
 (sdedr:define-refinement-placement "RefinementPlacement.Si_charge_layer" "RefinementDefinition.Si_charge_layer" (list "window" "RefEvalWin.Si_charge_layer"))
 
 
