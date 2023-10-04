@@ -144,5 +144,19 @@
 
 #####################################################################################################################
 
+;----------------------------------------------------------------------;
+; Meshing building
+;----------------------------------------------------------------------;
+; Meshing the device structure
+(sde:set-project-name "n@node@")
+(sdesnmesh:iocontrols "outputFile" "n@node@")
+(sde:set-meshing-command "snmesh")
+(sde:set-project-name "n@node@")
+(sdesnmesh:iocontrols "outputFile" "n@node@")
+(sde:build-mesh "" "n@node@")
+(system:command "svisual n@node@_msh.tdr &")
+(sde:save-model "n@node@")
 
-(sde:build-mesh "snmesh" " " "n@node@_msh")
+
+;(sde:set-project-name "sde_dvs")
+;(sde:save-model "n1_mesh")
