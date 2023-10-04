@@ -36,16 +36,7 @@
 
 
 #Si_multiplication_layer
-(sdegeo:create-rectangle (position (+ A B) (* L_mult -0.5) 0) (position (+ C (+ A B)) (* L_charge -0.5) 0) "Silicon" "Si_multiplication_layer")
-
-(sdegeo:create-rectangle (position (+ A B) (* L_charge 0.5) 0) (position (+ C (+ A B)) (* L_mult 0.5) 0) "Silicon" "Si_multiplication_layer")
-
-(sdegeo:set-default-boolean "AB")
-
 (sdegeo:create-rectangle (position (+ C (+ A B)) (* L_dev -0.5) 0) (position (+ D (+ C (+ A B))) (* L_dev 0.5) 0) "Silicon" "Si_multiplication_layer")
-
-(sdegeo:set-default-boolean "ABA")
-
 
 #Si_charge_layer
 (sdegeo:create-rectangle (position (+ A B) (* L_charge -0.5) 0) (position (+ C (+ A B)) (* L_charge 0.5) 0) "Silicon" "Si_charge_layer")
@@ -122,17 +113,9 @@
 
 #Si Multiplication 
 
-(sdedr:define-refeval-window "RefEvalWin.Si_mult" "Rectangle"  (position (+ A B) (* L_mult -0.5) 0) (position (+ C (+ A B)) (* L_charge -0.5) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_mult" (/ C 10)(/ (- L_mult L_charge) 10) (/ C 100)(- L_mult L_charge))
-(sdedr:define-refinement-placement "RefinementPlacement.Si_mult" "RefinementDefinition.Si_mult" (list "window" "RefEvalWin.Si_mult"))
-
-(sdedr:define-refeval-window "RefEvalWin.Si_mult2" "Rectangle"  (position (+ A B) (* L_charge 0.5) 0) (position (+ C (+ A B)) (* L_mult 0.5) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_mult2" (/ C 10)(- L_mult L_charge) (/ C 100)(- L_mult L_charge))
-(sdedr:define-refinement-placement "RefinementPlacement.Si_mult2" "RefinementDefinition.Si_mult2" (list "window" "RefEvalWin.Si_mult2"))
-
 (sdedr:define-refeval-window "RefEvalWin.Si_mult3" "Rectangle"  (position (+ C (+ A B)) (* L_dev -0.5) 0) (position (+ D (+ C (+ A B))) (* L_dev 0.5) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_mult3" (/ D 10)(/ L_mult 10) (/ D 100)(/ L_mult 100))
-(sdedr:define-refinement-placement "RefinementPlacement.Si_mult3" "RefinementDefinition.Si_mult3" (list "window" "RefEvalWin.Si_mult3"))
+(sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ D 10)(/ L_mult 10) (/ D 100)(/ L_mult 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Si_multiplication_layer" "RefinementDefinition.Si_multiplication_layer" (list "window" "RefEvalWin.Si_mult3"))
 
 
 #Si contact
