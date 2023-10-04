@@ -94,35 +94,35 @@
 
 
 #Ge Contact
-(sdedr:define-refeval-window "RefEvalWin.Contact" "Rectangle"  (position 0 (* L_contact -0.5) 0) (position A (* L_contact 0.5) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Contact" (/ A 10)(/ L_contact 10) (/ A 100))(/ L_contact 100) 
-(sdedr:define-refinement-placement "RefinementPlacement.Contact" "RefinementDefinition.Contact" (list "window" "RefEvalWin.Contact"))
+(sdedr:define-refeval-window "RefEvalWin.Ge_contact_layer" "Rectangle"  (position 0 (* L_contact -0.5) 0) (position A (* L_contact 0.5) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Ge_contact_layer" (/ A 10)(/ L_contact 10) (/ A 100))(/ L_contact 100) 
+(sdedr:define-refinement-placement "RefinementPlacement.Ge_contact_layer" "RefinementDefinition.Ge_contact_layer" (list "window" "RefEvalWin.Ge_contact_layer"))
 
 
 #Ge absorption layer
-(sdedr:define-refeval-window "RefEvalWin.Ge_absorption" "Rectangle"  (position A (* L_mult -0.5) 0) (position (+ A B) (* L_mult 0.5)  0))
-(sdedr:define-refinement-size "RefinementDefinition.Ge_absorption"(/ B 10)(/ L_mult 10) (/ B 100)(/ L_mult 100))
-(sdedr:define-refinement-placement "RefinementPlacement.Ge_absorption" "RefinementDefinition.Ge_absorption" (list "window" "RefEvalWin.Ge_absorption"))
+(sdedr:define-refeval-window "RefEvalWin.Ge_absorption_layer" "Rectangle"  (position A (* L_mult -0.5) 0) (position (+ A B) (* L_mult 0.5)  0))
+(sdedr:define-refinement-size "RefinementDefinition.Ge_absorption_layer"(/ B 10)(/ L_mult 10) (/ B 100)(/ L_mult 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Ge_absorption_layer" "RefinementDefinition.Ge_absorption_layer" (list "window" "RefEvalWin.Ge_absorption_layer"))
 
 
 #Si Charge sheet
-(sdedr:define-refeval-window "RefEvalWin.Si_charge" "Rectangle"  (position (+ A B) (* L_charge -0.5) 0) (position (+ C (+ A B)) (* L_charge 0.5) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_charge" (/ B 10)(/ L_mult 10) (/ C 100)(/ L_mult 100))
-(sdedr:define-refinement-placement "RefinementPlacement.Si_charge" "RefinementDefinition.Si_charge" (list "window" "RefEvalWin.Si_charge"))
+(sdedr:define-refeval-window "RefEvalWin.Si_charge_layer" "Rectangle"  (position (+ A B) (* L_charge -0.5) 0) (position (+ C (+ A B)) (* L_charge 0.5) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Si_charge_layer" (/ B 10)(/ L_mult 10) (/ C 100)(/ L_mult 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Si_charge_layer" "RefinementDefinition.Si_charge_layer" (list "window" "RefEvalWin.Si_charge_layer"))
 
 
 #Si Multiplication 
 
-(sdedr:define-refeval-window "RefEvalWin.Si_mult3" "Rectangle"  (position (+ C (+ A B)) (* L_dev -0.5) 0) (position (+ D (+ C (+ A B))) (* L_dev 0.5) 0))
+(sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (+ C (+ A B)) (* L_dev -0.5) 0) (position (+ D (+ C (+ A B))) (* L_dev 0.5) 0))
 (sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ D 10)(/ L_mult 10) (/ D 100)(/ L_mult 100))
 (sdedr:define-refinement-placement "RefinementPlacement.Si_multiplication_layer" "RefinementDefinition.Si_multiplication_layer" (list "window" "RefEvalWin.Si_mult3"))
 
 
 #Si contact
 
-(sdedr:define-refeval-window "RefEvalWin.Si_contact" "Rectangle"  (position (+ D (+ C (+ A B))) (* L_dev -0.5) 0) (position (+ E(+ D (+ C (+ A B)))) (* L_dev 0.5) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_contact" (/ E 10)(/ L_mult 10) (/ E 100)(/ L_mult 100))
-(sdedr:define-refinement-placement "RefinementPlacement.Si_contact" "RefinementDefinition.Si_contact" (list "window" "RefEvalWin.Si_contact"))
+(sdedr:define-refeval-window "RefEvalWin.Si_contact_layer" "Rectangle"  (position (+ D (+ C (+ A B))) (* L_dev -0.5) 0) (position (+ E(+ D (+ C (+ A B)))) (* L_dev 0.5) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Si_contact_layer" (/ E 10)(/ L_mult 10) (/ E 100)(/ L_mult 100))
+(sdedr:define-refinement-placement "RefinementPlacement.Si_contact_layer" "RefinementDefinition.Si_contact_layer" (list "window" "RefEvalWin.Si_contact_layer"))
 
 
 #####################################################################################################################
