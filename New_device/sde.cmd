@@ -95,7 +95,7 @@
 
 #Ge Contact
 (sdedr:define-refeval-window "RefEvalWin.Ge_contact_layer" "Rectangle"  (position 0 (* L_contact -0.5) 0) (position A (* L_contact 0.5) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Ge_contact_layer" (/ A 10)(/ L_contact 10) (/ A 100))(/ L_contact 100) 
+(sdedr:define-refinement-size "RefinementDefinition.Ge_contact_layer" (/ A 10)(/ L_contact 10) (/ A 100))(/ L_contact 100))
 (sdedr:define-refinement-placement "RefinementPlacement.Ge_contact_layer" "RefinementDefinition.Ge_contact_layer" (list "window" "RefEvalWin.Ge_contact_layer"))
 
 
