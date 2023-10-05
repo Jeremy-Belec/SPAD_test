@@ -9,7 +9,7 @@ File {
 	Plot=      "n4_des.tdr"
 	Output=    "n4_des.log"
 }
-
+(define L_dev 30) ;Length of device [um]
 Electrode {
 	{ Name= "n_contact"  Voltage= 0 }
 	{ Name= "p_contact"  Voltage= 0 }
@@ -48,7 +48,7 @@ Physics	{
 			Intensity= 1  				* Incident light intensity [W/cm2]	
 			Polarization= 0.5				* Unpolarized light
 			Theta= 180						* Normal incidence,	in -ve x direction
-			Window(Line(x1= -15 x2= 15)
+			Window(Line(x1= (* L_dev -0.5) x2= (* L_dev 0.5))
 			)			
 		) * end Excitation
 		OpticalSolver (
