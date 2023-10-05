@@ -10,8 +10,8 @@
 (define E 0.15) ;Si contact thickness (n)[um]
 
 (define L_contact 12) ;Length of Ge contact [um]
-(define L_charge 16) ;Length of Si charge sheet [um]
-(define L_mult 20) ;Length of Si multiplication region [um]
+(define L_charge 16) ;Length of Si charge sheet [um] Note: Mesa has L_charge = L_mult, but not planar
+(define L_mult 16) ;Length of Si multiplication region [um]
 (define L_dev 30) ;Length of device [um]
 
 #Definition of Doping variables
