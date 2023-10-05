@@ -56,7 +56,7 @@ Physics	{
 			Intensity= 1  				* Incident light intensity [W/cm2]	
 			Polarization= 0.5				* Unpolarized light
 			Theta= 180						* Normal incidence,	in -ve x direction
-			Window( Origin= (0, )
+			Window( Origin= (0, (+ E(+ D (+ C (+ A B)))))
 				Line(x1= (* L_dev -0.5) x2= (* L_dev 0.5))
 			)			
 		) * end Excitation
