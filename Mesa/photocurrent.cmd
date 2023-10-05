@@ -10,12 +10,6 @@ File {
 	Output=    "n4_des.log"
 }
 
-(define L_dev 30) ;Length of device [um]
-(define A 0.05) ;Ge contact thickness (p)[um]
-(define B 1) ;Ge absorption layer thickness (p)[um]
-(define C 0.1) ;Si charge sheet thickness (p)[um]
-(define D 1.5) ;Si multiplication region thickness (n)[um]
-(define E 0.15) ;Si contact thickness (n)[um]
 
 
 Electrode {
@@ -56,8 +50,8 @@ Physics	{
 			Intensity= 1  				* Incident light intensity [W/cm2]	
 			Polarization= 0.5				* Unpolarized light
 			Theta= 180						* Normal incidence,	in -ve x direction
-			Window( Origin= (0, (+ E(+ D (+ C (+ A B)))))
-				Line(x1= (* L_dev -0.5) x2= (* L_dev 0.5))
+			Window( Origin= (0, 3)
+				Line(x1= -15 x2= 15)
 			)			
 		) * end Excitation
 		OpticalSolver (
