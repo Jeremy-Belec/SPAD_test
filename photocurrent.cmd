@@ -10,6 +10,8 @@ File {
 	Output=    "n4_des.log"
 }
 
+
+
 Electrode {
 	{ Name= "n_contact"  Voltage= 0 }
 	{ Name= "p_contact"  Voltage= 0 }
@@ -45,10 +47,11 @@ Physics	{
 		) 
 		Excitation (
 			Wavelength= 2  				* Incident light wavelength [um]
-			Intensity= 1  				* Incident light intensity [W/cm2]	
+			Intensity= 0.01 				* Incident light intensity [W/cm2]	
 			Polarization= 0.5				* Unpolarized light
-			Theta= 90						* Normal incidence,	in -ve x direction
-			Window(Line(x1= -15 x2= 15)
+			Theta= 180						* Normal incidence,	in -ve x direction
+			Window( Origin= (0, 3)
+				Line(x1= -15 x2= 15)
 			)			
 		) * end Excitation
 		OpticalSolver (
@@ -122,8 +125,8 @@ Solve {
 	Quasistationary ( 
 		InitialStep= 1e-2 Increment= 1.4
 		MinStep= 1e-6     MaxStep= 0.01	
-		Goal { Name="p_contact" Voltage= -10 }
+		Goal { Name="p_contact" Voltage= -40 }
 	){ Coupled { Poisson Electron Hole } }
 
-	System("rm -f tmp*") *remove the plot we don't need anymore.	
+
 }
