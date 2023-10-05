@@ -9,10 +9,10 @@
 (define D 1.5) ;Si multiplication region thickness (n)[um]
 (define E 0.15) ;Si contact thickness (n)[um]
 
-(define L_contact 12) ;Length of Ge contact [um]
-(define L_charge 16) ;Length of Si charge sheet [um] Note: Mesa has L_charge = L_mult, but no planar
-(define L_mult 16) ;Length of Si multiplication region [um]
-(define L_dev 30) ;Length of device [um]
+(define L_contact 28) ;Length of Ge contact [um]
+(define L_charge 28) ;Length of Si charge sheet [um] Note: Mesa has L_charge = L_mult, but no planar
+(define L_mult 28) ;Length of Si multiplication region [um]
+(define L_dev 62) ;Length of device [um]
 
 #Definition of Doping variables
 
@@ -143,4 +143,3 @@
 
 ;(sde:set-project-name "sde_dvs")
 ;(sde:save-model "n1_mesh")
-
