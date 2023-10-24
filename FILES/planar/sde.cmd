@@ -39,9 +39,9 @@
 
 
 #Si_multiplication_layer
-(sdegeo:create-rectangle (position (* L_mult -0.5) (+ A B) 0) (position (* L_charge -0.5) (+ C (+ A B)) 0) "Silicon" "Si_multiplication_layer")
+(sdegeo:create-rectangle (position (* L_mult -0.5) (+ A B) 0) (position (* L_charge -0.5) (+ D (+ C (+ A B))) 0) "Silicon" "Si_multiplication_layer")
 
-(sdegeo:create-rectangle (position (* L_charge 0.5) (+ A B) 0) (position (* L_mult 0.5) (+ C (+ A B)) 0) "Silicon" "Si_multiplication_layer")
+(sdegeo:create-rectangle (position (* L_charge 0.5) (+ A B) 0) (position (* L_mult 0.5) (+ D (+ C (+ A B))) 0) "Silicon" "Si_multiplication_layer")
 
 (sdegeo:create-rectangle (position (* L_dev -0.5) (+ C (+ A B)) 0) (position (* L_dev 0.5) (+ D (+ C (+ A B))) 0) "Silicon" "Si_multiplication_layer")
 
@@ -126,12 +126,12 @@
 (sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ L_mult 10) (/ D 10) (/ L_mult 100) (/ D 150) )
 (sdedr:define-refinement-placement "RefinementPlacement.Si_multiplication_layer" "RefinementDefinition.Si_multiplication_layer" (list "window" "RefEvalWin.Si_mult3"))
 
-(sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_mult -0.5) (+ A B) 0) (position (* L_charge -0.5) (+ C (+ A B)) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ L_mult 10) (/ C 10) (/ L_mult 100) (/ C 150) )
+(sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_mult -0.5) (+ A B) 0) (position (* L_charge -0.5) (+ D (+ C (+ A B))) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ L_mult 10) (/ (+ D C) 10) (/ L_mult 100) (/ (+ D C) 150) )
 (sdedr:define-refinement-placement "RefinementPlacement.Si_multiplication_layer" "RefinementDefinition.Si_multiplication_layer" (list "window" "RefEvalWin.Si_mult3"))
 
-(sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_charge 0.5) (+ A B) 0) (position (* L_mult 0.5) (+ C (+ A B)) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ L_mult 10) (/ C 10) (/ L_mult 100) (/ C 150) )
+(sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_charge 0.5) (+ A B) 0) (position (* L_mult 0.5) (+ D (+ C (+ A B))) 0))
+(sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ L_mult 10) (/ (+ D C) 10) (/ L_mult 100) (/ (+ D C) 150) )
 (sdedr:define-refinement-placement "RefinementPlacement.Si_multiplication_layer" "RefinementDefinition.Si_multiplication_layer" (list "window" "RefEvalWin.Si_mult3"))
 
 
