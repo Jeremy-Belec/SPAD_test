@@ -14,7 +14,7 @@
 
 (define L_contact 19) ;Length of Ge contact [um]
 (define L_charge 19) ;Length of Si charge sheet [um] Note: Mesa has L_charge = L_mult, but no planar
-(define L_mult 19) ;Length of Si multiplication region [um]
+(define L_mult 14) ;Length of Si multiplication region [um]
 (define L_dev 32) ;Length of device [um]
 
 #Definition of Doping variables
