@@ -4,8 +4,10 @@ File {
 *--Input--*
 Grid = "n1_msh.tdr"
 *--Output--*
-Plot= "n3_des.tdr"
-Output = "n3_des.log"
+*-Output	
+	Current=   "n4_current2_nolight_des.plt"
+	Plot=      "n4_des.tdr"
+	Output=    "n4_des.log"
 Parameters = "models.par"
 }
 
@@ -62,4 +64,48 @@ Solve {
   *   InitialStep=0.001 MinStep=1e-5 Increment=1.3 Decrement=2 MaxStep=0.01
    *  Goal{ Name="n_contact" Voltage= -40 }
    *){ Coupled{ Poisson Electron Hole } }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
