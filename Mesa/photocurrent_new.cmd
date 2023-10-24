@@ -5,7 +5,7 @@ File {
 	Grid = "n1_msh.tdr"
 	Parameter= "models.par"
 *-Output	
-	Current=   "n4_current_des.tdr"
+	Current=   "n4_current2_des.plt"
 	Plot=      "n4_des.tdr"
 	Output=    "n4_des.log"
 }
@@ -47,7 +47,7 @@ Physics	{
 		) 
 		Excitation (
 			Wavelength= 2  				* Incident light wavelength [um]
-			Intensity= 0.001 				* Incident light intensity [W/cm2]	
+			Intensity= 0.01				* Incident light intensity [W/cm2]	
 			Polarization= 0.5				* Unpolarized light
 			Theta= 0						* Normal incidence,	in -ve y direction
 			Window( Origin= (0,-1)
@@ -121,7 +121,7 @@ Solve {
   	Plot (FilePrefix= "n@node@_photo")
 
 			
-	*ramp voltage at anode from 0V to -0.3 V	
+	*ramp voltage at anode from 0V to -40 V	
 	Quasistationary ( 
 		InitialStep= 1e-2 Increment= 1.4
 		MinStep= 1e-6     MaxStep= 0.01	
