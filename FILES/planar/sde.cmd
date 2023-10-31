@@ -14,7 +14,7 @@
 
 (define L_contact 19) ;Length of Ge contact [um]
 (define L_charge 19) ;Length of Si charge sheet [um] Note: Mesa has L_charge = L_mult, but no planar
-(define L_mult 15) ;Length of Si multiplication region [um] (L_mult = L_contact)
+(define L_mult 28) ;Length of Si multiplication region [um] (L_mult = L_contact)
 (define L_dev 32) ;Length of device [um]
 (define L_abs 24) ;Length of absorber [um]
 
@@ -31,7 +31,7 @@
 
 
 #Ge_contact_layer
-(sdegeo:create-rectangle (position (* L_mult -0.5) 0 0) (position (* L_mult 0.5) A 0) "Germanium" "Ge_contact_layer")
+(sdegeo:create-rectangle (position (* L_contact -0.5) 0 0) (position (* L_contact 0.5) A 0) "Germanium" "Ge_contact_layer")
 
 
 
