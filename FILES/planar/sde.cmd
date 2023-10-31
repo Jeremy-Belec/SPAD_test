@@ -132,14 +132,14 @@
 
 #Si Multiplication 
 
-(sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_dev -0.5) (+ C (+ A B)) 0) (position (* L_dev 0.5) (+ D (+ C (+ A B))) 0))
+(sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_mult -0.5) (+ C (+ A B)) 0) (position (* L_mult 0.5) (+ D (+ C (+ A B))) 0))
 (sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ L_mult 10) (/ D 10) (/ L_mult 100) (/ D 150) )
 (sdedr:define-refinement-placement "RefinementPlacement.Si_multiplication_layer" "RefinementDefinition.Si_multiplication_layer" (list "window" "RefEvalWin.Si_mult3"))
 
 
 #Si contact
 
-(sdedr:define-refeval-window "RefEvalWin.Si_contact_layer" "Rectangle"  (position (* L_dev -0.5) (+ D (+ C (+ A B))) 0) (position (* L_dev 0.5) (+ E(+ D (+ C (+ A B)))) 0))
+(sdedr:define-refeval-window "RefEvalWin.Si_contact_layer" "Rectangle"  (position (* L_mult -0.5) (+ D (+ C (+ A B))) 0) (position (* L_mult 0.5) (+ E(+ D (+ C (+ A B)))) 0))
 (sdedr:define-refinement-size "RefinementDefinition.Si_contact_layer" (/ L_mult 10) (/ E 10) (/ L_mult 100)(/ E 20) )
 (sdedr:define-refinement-placement "RefinementPlacement.Si_contact_layer" "RefinementDefinition.Si_contact_layer" (list "window" "RefEvalWin.Si_contact_layer"))
 
