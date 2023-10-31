@@ -104,21 +104,21 @@
 
 #Ge Contact
 (sdedr:define-refeval-window "RefEvalWin.Ge_contact_layer" "Rectangle"  (position (* L_contact -0.5) 0 0) (position (* L_contact 0.5) A 0))
-(sdedr:define-refinement-size "RefinementDefinition.Ge_contact_layer" (/ L_contact 10) (/ A 10) (/ L_contact 100) (/ A 100) )
+(sdedr:define-refinement-size "RefinementDefinition.Ge_contact_layer" (/ L_contact 5) (/ A 5) (/ L_contact 20) (/ A 20) )
 (sdedr:define-refinement-placement "RefinementPlacement.Ge_contact_layer" "RefinementDefinition.Ge_contact_layer" (list "window" "RefEvalWin.Ge_contact_layer"))
 
 
 #Ge absorption layer
 (sdedr:define-refeval-window "RefEvalWin.Ge_absorption_layer" "Rectangle"  (position (* L_abs -0.5) A 0) (position (* L_abs 0.5) (+ A B)  0) )
-(sdedr:define-refinement-size "RefinementDefinition.Ge_absorption_layer"(/ L_mult 10) (/ B 10) (/ L_mult 100) (/ B 100) )
+(sdedr:define-refinement-size "RefinementDefinition.Ge_absorption_layer"(/ L_mult 5) (/ B 5) (/ L_mult 20) (/ B 100) )
 (sdedr:define-refinement-placement "RefinementPlacement.Ge_absorption_layer" "RefinementDefinition.Ge_absorption_layer" (list "window" "RefEvalWin.Ge_absorption_layer"))
 
 (sdedr:define-refeval-window "RefEvalWin.Ge_absorption_layer" "Rectangle"  (position (* L_charge -0.5) (+ A B) 0) (position (* L_abs -0.5) (+ C (+ A B))  0) )
-(sdedr:define-refinement-size "RefinementDefinition.Ge_absorption_layer"(/ (* 0.5 (- L_abs L_charge)) 10) (/ C 10) (/ (* 0.5 (- L_abs L_charge)) 100) (/ C 100) )
+(sdedr:define-refinement-size "RefinementDefinition.Ge_absorption_layer"(/ (* 0.5 (- L_abs L_charge)) 5) (/ C 10) (/ (* 0.5 (- L_abs L_charge)) 50) (/ C 100) )
 (sdedr:define-refinement-placement "RefinementPlacement.Ge_absorption_layer" "RefinementDefinition.Ge_absorption_layer" (list "window" "RefEvalWin.Ge_absorption_layer"))
 
 (sdedr:define-refeval-window "RefEvalWin.Ge_absorption_layer" "Rectangle"  (position (* L_charge -0.5) (+ A B) 0) (position (* L_abs 0.5) (+ C (+ A B))  0) )
-(sdedr:define-refinement-size "RefinementDefinition.Ge_absorption_layer"(/ (* 0.5 (- L_abs L_charge)) 10) (/ C 10) (/ (* 0.5 (- L_abs L_charge)) 100) (/ C 100) )
+(sdedr:define-refinement-size "RefinementDefinition.Ge_absorption_layer"(/ (* 0.5 (- L_abs L_charge)) 5) (/ C 10) (/ (* 0.5 (- L_abs L_charge)) 50) (/ C 100) )
 (sdedr:define-refinement-placement "RefinementPlacement.Ge_absorption_layer" "RefinementDefinition.Ge_absorption_layer" (list "window" "RefEvalWin.Ge_absorption_layer"))
 
 
@@ -126,21 +126,21 @@
 
 #Si Charge sheet
 (sdedr:define-refeval-window "RefEvalWin.Si_charge_layer" "Rectangle"  (position (* L_charge -0.5) (+ A B) 0) (position (* L_charge 0.5) (+ C (+ A B)) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_charge_layer" (/ L_mult 10) (/ C 10) (/ L_mult 100) (/ C 200) )
+(sdedr:define-refinement-size "RefinementDefinition.Si_charge_layer" (/ L_mult 10) (/ C 10) (/ L_mult 50) (/ C 200) )
 (sdedr:define-refinement-placement "RefinementPlacement.Si_charge_layer" "RefinementDefinition.Si_charge_layer" (list "window" "RefEvalWin.Si_charge_layer"))
 
 
 #Si Multiplication 
 
 (sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_mult -0.5) (+ C (+ A B)) 0) (position (* L_mult 0.5) (+ D (+ C (+ A B))) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ L_mult 10) (/ D 10) (/ L_mult 100) (/ D 150) )
+(sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ L_mult 5) (/ D 10) (/ L_mult 40) (/ D 150) )
 (sdedr:define-refinement-placement "RefinementPlacement.Si_multiplication_layer" "RefinementDefinition.Si_multiplication_layer" (list "window" "RefEvalWin.Si_mult3"))
 
 
 #Si contact
 
 (sdedr:define-refeval-window "RefEvalWin.Si_contact_layer" "Rectangle"  (position (* L_mult -0.5) (+ D (+ C (+ A B))) 0) (position (* L_mult 0.5) (+ E(+ D (+ C (+ A B)))) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_contact_layer" (/ L_mult 10) (/ E 10) (/ L_mult 100)(/ E 20) )
+(sdedr:define-refinement-size "RefinementDefinition.Si_contact_layer" (/ L_mult 5) (/ E 10) (/ L_mult 30)(/ E 20) )
 (sdedr:define-refinement-placement "RefinementPlacement.Si_contact_layer" "RefinementDefinition.Si_contact_layer" (list "window" "RefEvalWin.Si_contact_layer"))
 
 
