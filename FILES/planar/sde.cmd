@@ -16,6 +16,7 @@
 (define L_charge 19) ;Length of Si charge sheet [um] Note: Mesa has L_charge = L_mult, but no planar
 (define L_mult 15) ;Length of Si multiplication region [um] (L_mult = L_contact)
 (define L_dev 32) ;Length of device [um]
+(define L_abs 24) ;Length of absorber [um]
 
 #Definition of Doping variables
 
@@ -35,22 +36,20 @@
 
 
 #Ge_absorption_layer
-(sdegeo:create-rectangle (position (* L_mult -0.5) A 0) (position (* L_mult 0.5) (+ A B) 0) "Germanium" "Ge_absorption_layer")
+(sdegeo:create-rectangle (position (* L_abs -0.5) A 0) (position (* L_abs 0.5) (+ A B) 0) "Germanium" "Ge_absorption_layer")
 
-(sdegeo:create-rectangle (position (* L_charge 0.5) A 0) (position (* L_mult 0.5) (+ D (+ C (+ A B))) 0) "Germanium" "Ge_absorption_layer")
+(sdegeo:create-rectangle (position (* L_charge 0.5) A 0) (position (* L_abs 0.5) (+ C (+ A B)) 0) "Germanium" "Ge_absorption_layer")
 
-(sdegeo:create-rectangle (position (* L_mult -0.5) (+ C (+ A B)) 0) (position (* L_mult 0.5) (+ D (+ C (+ A B))) 0) "Germanium" "Ge_absorption_layer")
+(sdegeo:create-rectangle (position (* L_abs -0.5) (+ C (+ A B)) 0) (position (* L_mult 0.5) (+ C (+ A B)) 0) "Germanium" "Ge_absorption_layer")
+
+
+#Si_charge_layer
+(sdegeo:create-rectangle (position (* L_charge -0.5) (+ A B) 0) (position (* L_charge 0.5) (+ C (+ A B)) 0) "Silicon" "Si_charge_layer")
 
 
 #Si_multiplication_layer
 (sdegeo:create-rectangle (position (* L_mult -0.5) A 0) (position (* L_charge -0.5) (+ D (+ C (+ A B))) 0) "Silicon" "Si_multiplication_layer")
 
-
-
-
-
-#Si_charge_layer
-(sdegeo:create-rectangle (position (* L_charge -0.5) (+ A B) 0) (position (* L_charge 0.5) (+ C (+ A B)) 0) "Silicon" "Si_charge_layer")
 
 
 #Si_contact_layer
