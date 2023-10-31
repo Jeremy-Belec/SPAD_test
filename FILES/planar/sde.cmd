@@ -14,8 +14,7 @@
 
 (define L_contact 19) ;Length of Ge contact [um]
 (define L_charge 19) ;Length of Si charge sheet [um] Note: Mesa has L_charge = L_mult, but no planar
-(define L_mult 28) ;Length of Si multiplication region [um] (L_mult = L_contact)
-(define L_dev 32) ;Length of device [um]
+(define L_mult 28) ;Length of Si multiplication region [um] (length of device)
 (define L_abs 24) ;Length of absorber [um]
 
 #Definition of Doping variables
@@ -38,9 +37,9 @@
 #Ge_absorption_layer
 (sdegeo:create-rectangle (position (* L_abs -0.5) A 0) (position (* L_abs 0.5) (+ A B) 0) "Germanium" "Ge_absorption_layer")
 
-(sdegeo:create-rectangle (position (* L_charge 0.5) A 0) (position (* L_abs 0.5) (+ C (+ A B)) 0) "Germanium" "Ge_absorption_layer")
+(sdegeo:create-rectangle (position (* L_charge 0.5) (+ A B) 0) (position (* L_abs 0.5) (+ C (+ A B)) 0) "Germanium" "Ge_absorption_layer")
 
-(sdegeo:create-rectangle (position (* L_abs -0.5) (+ C (+ A B)) 0) (position (* L_mult 0.5) (+ C (+ A B)) 0) "Germanium" "Ge_absorption_layer")
+(sdegeo:create-rectangle (position (* L_abs -0.5) (+ A B) 0) (position (* L_charge -0.5) (+ C (+ A B)) 0) "Germanium" "Ge_absorption_layer")
 
 
 #Si_charge_layer
@@ -48,12 +47,12 @@
 
 
 #Si_multiplication_layer
-(sdegeo:create-rectangle (position (* L_mult -0.5) A 0) (position (* L_charge -0.5) (+ D (+ C (+ A B))) 0) "Silicon" "Si_multiplication_layer")
+(sdegeo:create-rectangle (position (* L_mult -0.5) (+ C (+ A B)) 0) (position (* L_mult 0.5) (+ D (+ C (+ A B))) 0) "Silicon" "Si_multiplication_layer")
 
 
 
 #Si_contact_layer
-(sdegeo:create-rectangle (position (* L_dev -0.5) (+ D (+ C (+ A B))) 0) (position (* L_dev 0.5) (+ E(+ D (+ C (+ A B)))) 0) "Silicon" "Si_contact_layer")
+(sdegeo:create-rectangle (position (* L_mult -0.5) (+ D (+ C (+ A B))) 0) (position (* L_mult 0.5) (+ E(+ D (+ C (+ A B)))) 0) "Silicon" "Si_contact_layer")
 
 
 
@@ -110,9 +109,19 @@
 
 
 #Ge absorption layer
-(sdedr:define-refeval-window "RefEvalWin.Ge_absorption_layer" "Rectangle"  (position (* L_mult -0.5) A 0) (position (* L_mult 0.5) (+ A B)  0) )
+(sdedr:define-refeval-window "RefEvalWin.Ge_absorption_layer" "Rectangle"  (position (* L_abs -0.5) A 0) (position (* L_abs 0.5) (+ A B)  0) )
 (sdedr:define-refinement-size "RefinementDefinition.Ge_absorption_layer"(/ L_mult 10) (/ B 10) (/ L_mult 100) (/ B 100) )
 (sdedr:define-refinement-placement "RefinementPlacement.Ge_absorption_layer" "RefinementDefinition.Ge_absorption_layer" (list "window" "RefEvalWin.Ge_absorption_layer"))
+
+(sdedr:define-refeval-window "RefEvalWin.Ge_absorption_layer" "Rectangle"  (position (* L_charge -0.5) (+ A B) 0) (position (* L_abs -0.5) (+ C (+ A B))  0) )
+(sdedr:define-refinement-size "RefinementDefinition.Ge_absorption_layer"(/ (* 0.5 (- L_abs L_charge)) 10) (/ C 10) (/ (* 0.5 (- L_abs L_charge)) 100) (/ C 100) )
+(sdedr:define-refinement-placement "RefinementPlacement.Ge_absorption_layer" "RefinementDefinition.Ge_absorption_layer" (list "window" "RefEvalWin.Ge_absorption_layer"))
+
+(sdedr:define-refeval-window "RefEvalWin.Ge_absorption_layer" "Rectangle"  (position (* L_charge -0.5) (+ A B) 0) (position (* L_abs 0.5) (+ C (+ A B))  0) )
+(sdedr:define-refinement-size "RefinementDefinition.Ge_absorption_layer"(/ (* 0.5 (- L_abs L_charge)) 10) (/ C 10) (/ (* 0.5 (- L_abs L_charge)) 100) (/ C 100) )
+(sdedr:define-refinement-placement "RefinementPlacement.Ge_absorption_layer" "RefinementDefinition.Ge_absorption_layer" (list "window" "RefEvalWin.Ge_absorption_layer"))
+
+
 
 
 #Si Charge sheet
@@ -125,14 +134,6 @@
 
 (sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_dev -0.5) (+ C (+ A B)) 0) (position (* L_dev 0.5) (+ D (+ C (+ A B))) 0))
 (sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ L_mult 10) (/ D 10) (/ L_mult 100) (/ D 150) )
-(sdedr:define-refinement-placement "RefinementPlacement.Si_multiplication_layer" "RefinementDefinition.Si_multiplication_layer" (list "window" "RefEvalWin.Si_mult3"))
-
-(sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_mult -0.5) (+ A B) 0) (position (* L_charge -0.5) (+ D (+ C (+ A B))) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ L_mult 10) (/ (+ D C) 10) (/ L_mult 100) (/ (+ D C) 150) )
-(sdedr:define-refinement-placement "RefinementPlacement.Si_multiplication_layer" "RefinementDefinition.Si_multiplication_layer" (list "window" "RefEvalWin.Si_mult3"))
-
-(sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_charge 0.5) (+ A B) 0) (position (* L_mult 0.5) (+ D (+ C (+ A B))) 0))
-(sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" (/ L_mult 10) (/ (+ D C) 10) (/ L_mult 100) (/ (+ D C) 150) )
 (sdedr:define-refinement-placement "RefinementPlacement.Si_multiplication_layer" "RefinementDefinition.Si_multiplication_layer" (list "window" "RefEvalWin.Si_mult3"))
 
 
