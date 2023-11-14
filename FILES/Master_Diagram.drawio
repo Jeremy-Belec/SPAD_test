@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-02T16:05:40.706Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.76" etag="0MkabfPZUciKGZePjugl" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-14T15:51:34.258Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36 Edg/118.0.2088.76" etag="O9asXFfvJ8I8EFRyM6B3" version="22.0.8" type="github">
   <diagram name="Page-1" id="6sgQ7mZHR1NJ1wXFVXwH">
     <mxGraphModel dx="1002" dy="569" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -15,10 +15,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="z_G34_HntLP7hV_ctuyc-1" value="Concevoir un SPAD 2 micromètres" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="z_G34_HntLP7hV_ctuyc-1" value="Concevoir un SPAD 2 micromètres" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#FF8000;strokeColor=#FF6666;" parent="1" vertex="1">
           <mxGeometry x="60" y="60" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="z_G34_HntLP7hV_ctuyc-2" value="SPAD fonctionnel" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="z_G34_HntLP7hV_ctuyc-2" value="SPAD fonctionnel pour 2 micromètres" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1;strokeColor=#33FF99;fillColor=#00994D;" parent="1" vertex="1">
           <mxGeometry x="660" y="335" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="84NWz5OuLmp8BpoFs3TF-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="z_G34_HntLP7hV_ctuyc-3" target="z_G34_HntLP7hV_ctuyc-6">
@@ -32,7 +32,7 @@
         <mxCell id="84NWz5OuLmp8BpoFs3TF-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="z_G34_HntLP7hV_ctuyc-3" target="z_G34_HntLP7hV_ctuyc-30">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="z_G34_HntLP7hV_ctuyc-3" value="Découvrir les propriétés GeSn connues" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="z_G34_HntLP7hV_ctuyc-3" value="Découvrir les propriétés GeSn connues" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1;strokeColor=#FF66FF;" parent="1" vertex="1">
           <mxGeometry x="380" y="60" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="z_G34_HntLP7hV_ctuyc-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="z_G34_HntLP7hV_ctuyc-4" target="z_G34_HntLP7hV_ctuyc-6" edge="1">
@@ -41,16 +41,16 @@
         <mxCell id="84NWz5OuLmp8BpoFs3TF-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="z_G34_HntLP7hV_ctuyc-4" target="z_G34_HntLP7hV_ctuyc-30">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="z_G34_HntLP7hV_ctuyc-4" value="Analyser les dispositifs existants et simuler avec l&#39;ajout du GeSn" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="z_G34_HntLP7hV_ctuyc-4" value="Analyser les dispositifs existants et simuler avec l&#39;ajout du GeSn" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1;strokeColor=#FF66FF;" parent="1" vertex="1">
           <mxGeometry x="180" y="160" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="z_G34_HntLP7hV_ctuyc-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="z_G34_HntLP7hV_ctuyc-5" target="z_G34_HntLP7hV_ctuyc-6" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="z_G34_HntLP7hV_ctuyc-5" value="Rechercher des techniques de microfabrication (MBE, CVD) pour les dispositifs actuels et le GeSn" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
-          <mxGeometry x="20" y="210" width="160" height="140" as="geometry" />
+        <mxCell id="z_G34_HntLP7hV_ctuyc-5" value="Rechercher des techniques de microfabrication (MBE, CVD) pour les dispositifs actuels et le GeSn" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1;strokeColor=#FF66FF;" parent="1" vertex="1">
+          <mxGeometry y="210" width="200" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="z_G34_HntLP7hV_ctuyc-6" value="Fabriquer le dispositif et le caractériser en salle blanche" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="z_G34_HntLP7hV_ctuyc-6" value="Fabriquer le dispositif et le caractériser en salle blanche" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1;strokeColor=#FF66FF;" parent="1" vertex="1">
           <mxGeometry x="180" y="400" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="84NWz5OuLmp8BpoFs3TF-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="z_G34_HntLP7hV_ctuyc-7" target="z_G34_HntLP7hV_ctuyc-2">
@@ -59,10 +59,10 @@
         <mxCell id="84NWz5OuLmp8BpoFs3TF-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="z_G34_HntLP7hV_ctuyc-7" target="z_G34_HntLP7hV_ctuyc-30">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="z_G34_HntLP7hV_ctuyc-7" value="Optimiser le procédé de fabrication et les paramètres du dispositif et caractériser ces optimisation" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="z_G34_HntLP7hV_ctuyc-7" value="Optimiser le procédé de fabrication et les paramètres du dispositif et caractériser ces optimisation" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1;strokeColor=#FF66FF;" parent="1" vertex="1">
           <mxGeometry x="400" y="310" width="155" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="z_G34_HntLP7hV_ctuyc-30" value="Rédiger livrable, mémoire, fiche technique, rapport, présentation" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
+        <mxCell id="z_G34_HntLP7hV_ctuyc-30" value="Rédiger livrable, mémoire, fiche technique, rapport, présentation" style="ellipse;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#3399FF;strokeColor=#CCE5FF;" parent="1" vertex="1">
           <mxGeometry x="570" y="160" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="84NWz5OuLmp8BpoFs3TF-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="z_G34_HntLP7hV_ctuyc-6" target="z_G34_HntLP7hV_ctuyc-7">
@@ -90,14 +90,11 @@
         <mxCell id="84NWz5OuLmp8BpoFs3TF-23" value="[L] [P] [E]&amp;nbsp;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="550" y="70" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="84NWz5OuLmp8BpoFs3TF-24" value="+" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="410" y="75" width="20" height="20" as="geometry" />
-        </mxCell>
         <mxCell id="84NWz5OuLmp8BpoFs3TF-25" value="+" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="640" y="140" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="84NWz5OuLmp8BpoFs3TF-26" value="[L]&amp;nbsp;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="230" y="110" width="50" height="30" as="geometry" />
+        <mxCell id="84NWz5OuLmp8BpoFs3TF-26" value="[L] [E]&amp;nbsp;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="215" y="104" width="50" height="30" as="geometry" />
         </mxCell>
         <mxCell id="84NWz5OuLmp8BpoFs3TF-27" value="+" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="170" y="110" width="20" height="20" as="geometry" />
@@ -117,7 +114,7 @@
         <mxCell id="84NWz5OuLmp8BpoFs3TF-32" value="+" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="290" y="160" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="84NWz5OuLmp8BpoFs3TF-33" value="[L] [P] [E]&amp;nbsp;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="84NWz5OuLmp8BpoFs3TF-33" value="[L] [P] [A]&amp;nbsp;" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="40" y="160" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="84NWz5OuLmp8BpoFs3TF-34" value="+" style="text;strokeColor=none;align=center;fillColor=none;html=1;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
