@@ -8,6 +8,7 @@ swb &
 
 ;------------------------------------------------;
 #Add materials
+sdevice -P:Gold #Generates gold.par file
 
 1) create .par file with the new material parameters and place it in working directory
 2) add new materials to  datex text file and place it in working directory.
