@@ -48,7 +48,7 @@
 (sdegeo:create-rectangle (position (* L_Si -0.5) (- (+ t_Ox t_Ge) t_contact) 0) (position (+ L_dop (* L_Si -0.5)) (+ t_Ox t_Ge) 0) "Silicon" "Si_P_cont_layer")
 
 #N contact
-(sdegeo:create-rectangle (position (* L_Si -0.5) (- (+ t_Ox t_Ge) t_contact) 0) (position (+ L_dop (* L_Si -0.5)) (+ t_Ox t_Ge) 0) "Silicon" "Si_N_cont_layer")
+(sdegeo:create-rectangle (position (* L_Si 0.5) (- (+ t_Ox t_Ge) t_contact) 0) (position (- (* L_Si 0.5) L_dop) (+ t_Ox t_Ge) 0) "Silicon" "Si_N_cont_layer")
 
 
 #####################################################################################################################
