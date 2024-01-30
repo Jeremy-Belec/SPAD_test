@@ -1,0 +1,484 @@
+MaterialInterface = "Oxide/Silicon" {
+
+OpticalSurfaceRoughness
+{ *  Parameters for the optical characterization of a rough surface (material interface)
+
+  *  For the optical characterization of a rough surface the Haze functions (H_R,H_T)
+  *  and angular distribution functions (ADFdirect_R,ADFdirect_T,
+  *  ADFscatter_R, and ADFscatter_T for reflection and transmission
+  *  need to be determined.
+
+  *  Haze functions can be given as a constant, a wavelength dependent table,
+  *  or several wavelength dependent tables, where each table
+  *  corresponds to a certain angle of incidence, or as an analytic function.
+
+  *  For angular distribution functions a choice of several predefined analytic functions is provided.
+
+  *  Haze function for reflection
+	H_R	= 0.0000e+00	# [1]
+  *  Haze function for transmission
+	H_T	= 0.0000e+00	# [1]
+  *  Angular distribution function for reflection of direct coherent light
+  *     ADFdirect_R = Cosine(exponent = 2)
+  *  Angular distribution function for transmission of direct coherent light
+  *     ADFdirect_T = Cosine(exponent = 2)
+  *  Angular distribution function for reflection of scattered incoherent light
+  *     ADFscatter_R = Constant
+  *  Angular distribution function for transmission of scattered incoherent light
+  *     ADFscatter_T = Constant
+}
+
+
+* SpectralConversion
+* { * Spectral Conversion Model
+*   No default model, user has to define.
+*   All wavelength parameters should be in nanometers.
+*   Choice of Analytic or NumericalTable selected in Physics section of region
+*  
+*   ConversionEfficiency = float     * ratio of absorbed photons that are reemitted.
+*   AbsorptionScaling = float        * scale absorption
+*   EmissionScaling = float          * scale emission
+*   Analytic (
+*     AbsorptionProfile = (
+*        Gaussian(lambda0 sigma peakvalue dc_offset lambda_range0 lambda_range1)
+*        Lorentzian(lambda0 width peakvalue dc_offset lambda_range0 lambda_range1)
+*        ...
+*     )
+*     EmissionProfile = (
+*        Gaussian(lambda0 sigma peakvalue dc_offset lambda_range0 lambda_range1)
+*        Lorentzian(lambda0 width peakvalue dc_offset lambda_range0 lambda_range1)
+*        ...
+*     )
+*   )
+*   NumericalTable (
+*     AbsorptionProfile = (
+*        lambda0 value0
+*        lambda1 value1
+*        ...
+*     )
+*     EmissionProfile = (
+*        lambda0 value0
+*        lambda1 value1
+*        ...
+*     )
+
+*   ConversionEfficiency = 1.0
+* }
+
+SurfaceRecombination * surface SRH recombination:
+{ * s = S0 ( 1 + Sref ( N/Nref )^gamma ) recombination velocity
+	S0	= 1.0000e+03 ,	1.0000e+03	# [cm/s]
+	Sref	= 1.0000e-03	# [1]
+	Nref	= 1.0000e+16	# [cm^(-3)]
+	gamma	= 1	# [1]
+	Etrap	= 0.0000e+00	# [eV]
+}
+
+
+CondInsCurr  
+{ * ConductiveInsulator/Semiconductor current parameter 
+  * jc = curw*je + (1-curw)*jh 
+  * where: 
+  *     jc is the conduction current density 
+  *     je is the electron current density 
+  *     jh is the hole current density 
+  *     curw is fraction of current converted to je 
+	curw	= 1	# [1]
+}
+
+
+NBTI {
+  * The two-stage NBTI model involves 4 states:
+  * s1: oxigen vacancy as a precursor
+  * s2: positive E' center
+  * s3: neutral E' center
+  * s4: fixed positive charge with a Pb center
+  *
+  * The model involves the following transitions:
+  * ds1/dt = - s1*k12 + s3*k31
+  * ds2/dt = + s1*k12 - s2*(k23 + k24) + s3*k32 + s4*k42
+  * ds3/dt = + s2*k23 - s3*(k32 + k31)
+  * ds4/dt = + s2*k24 - s4*k42
+  * ---------------------------------
+  *    Stage One        |   Stage Two
+  * 
+  * s1 ----k12----> s2 ----k24----> s4
+  *                    <---k42-----
+  *  ^            | ^   |
+  *  |           k23|   |
+  * k31           | |   |
+  *  |            |k32  |
+  *  |            v |   |
+  *  |                  |
+  *   ----------- s3    |
+  *                     |
+  * ---------------------------------
+  *
+  * k12 = eE1 + hC1
+  * k23 = eC2 + hE2
+  * k32 = eE2 + hC2
+  * k31 = nu1*exp( -EA/kT )
+  * k24 = nu2*exp( -(ED - gamma*F)/kT )*Theta(C-r)
+  * k42 = nu2*exp( -(ED + dED + gamma*F)/kT )*Theta(C-r)
+  *
+  * where
+  * eE1 = eXsec*eVth*NC*exp( - H(EC-E1)/kT + Theta(eFc)*(F/eFc)^eRho - EB/kT )
+  * hC1 = hXsec*hVth*p *exp( - H(EV-E1)/kT + Theta(hFc)*(F/hFc)^hRho - EB/kT )
+  * eC2 = eXsec*eVth*n *exp( - H(E2-EC)/kT )
+  * eE2 = eXsec*eVth*NC*exp( - H(EC-E2)/kT )
+  * hC2 = hXsec*hVth*p *exp( - H(EV-E2)/kT )
+  * hE2 = hXsec*hVth*NV*exp( - H(E2-EV)/kT )
+  * H(x) = x*Theta(x) with Theta(x) the unit step function
+	gamma	= 7.4000e-08	# [cm*eV/V]
+	nu1	= 1.0000e+13	# [1/s]
+	nu2	= 5.1100e+15	# [1/s]
+  * E1: trap level of precursor relative to the valence band edge
+  * E2: trap level of E' center relative to the valence band edge
+  * E4: trap level of Pb center relative to the valence band edge
+  * EA: barrier energy for k31
+  * EB: barrier energy for k12
+  * ED: barrier energy for k24 and k42
+  *
+  * E1, E2, E4, EA, EB, ED, and r are independent random variables, and
+  * each sample has distinct set of values
+  *
+  * E1, E2, E4, EA, and EB follow the uniform distribution,
+  * and you need to specify their minimum and maximum values:
+	E1	= -1.1400e+00 ,	-3.1000e-01	# [eV]
+	E2	= 0.01 ,	0.3	# [eV]
+	E4	= 0.01 ,	0.5	# [eV]
+	EA	= 0.01 ,	1.15	# [eV]
+	EB	= 0.01 ,	1.15	# [eV]
+  *
+  * ED follows the Fermi-Derivative distribution, and you need to specify its
+  * average and standard deviation:
+	ED	= 1.46 ,	0.44	# [eV]
+  *
+  * dED: additional barrier energy for k42
+	dED	= 0.0000e+00	# [eV]
+  *
+  * r follows the uniform distribution between 0 and 1, and C represents a
+  * fraction of samples allowed to undergo the transition k24 and k42:
+	C	= 0.12	# [1]
+  *
+  * Following quantities have separate electron and hole values:
+	Xsec	= 1.0800e-15 ,	1.2400e-14	# [cm^2]
+	Vth	= 1.5000e+07 ,	1.2000e+07	# [cm/s]
+	Fc	= -1.0000e+00 ,	2.8300e+06	# [V/cm]
+	Rho	= 2 ,	2	# [1]
+  *
+  * References:
+  * [1] T. Grasser, B. Kaczer, W. Goes, T. Aichinger, P. Hehenerger,
+  *     and M. Nelhiebel, A Two-Stage Model for Negative Bias
+  *     Temperature Instability, IRPS 2009, pp. 33-44.
+  * [2] W. Goes, T. Grasser, M. Karner, and B. Kaczer, A Model for
+  *     Switching Traps in Amorphous Oxides, SISPAD 2009, pp. 159-162.
+}
+
+
+eNMP {
+  * The eNMP model involves 4 states:
+  * s1 : neutral stable
+  * s1': neutral metastable
+  * s2 : positive stable
+  * s2': positive metastable
+  *
+  * The model involves the following transitions:
+  * ds1 /dt = - s1 *(k11' + k12') + s1'*k1'1 + s2'*k2'1
+  * ds1'/dt = - s1'*(k1'1 + k1'2) + s1 *k11' + s2 *k21'
+  * ds2 /dt = - s2 *(k21' + k22') + s1'*k1'2 + s2'*k2'2
+  * ds2'/dt = - s2'*(k2'1 + k2'2) + s1 *k12' + s2 *k22'
+  *
+  * k12' = (1 + R )^1.5 * hXsec * hVth * p  * exp(-E12'/kT)
+  * k2'1 = (1 + R )^1.5 * hXsec * hVth * NV * exp(-E12'/kT) * exp(-(EtV - ET2p)/kT)
+  * k1'2 = (1 + Rp)^1.5 * hXsec * hVth * p  * exp(-E1'2/kT)
+  * k2'1 = (1 + Rp)^1.5 * hXsec * hVth * NV * exp(-E1'2/kT) * exp(-(EtpV      )/kT)
+  *
+  * k11' = nu0 * exp(-(E1p1 + Etp - Et)/kT)
+  * k1'1 = nu0 * exp(-(E1p1           )/kT)
+  * k22' = nu0 * exp(-(E2p2 + ET2p    )/kT)
+  * k2'2 = nu0 * exp(-(E2p2           )/kT)
+  *
+  * where
+  * E12'  = ES /(1 + R )^2 + R /(1 + R )*(-EtV + ET2p)
+  * E1'2  = ESp/(1 + Rp)^2 + Rp/(1 + Rp)*(-EtpV      )
+  * EtV   = (Et0  - EV0) + q * xt * |Fox|
+  * EtpV  = (Etp0 - EV0) + q * xt * |Fox|
+  * hXsec = hXsec0 * exp(-xt/x0)
+  *
+  * Define:  Et = (Et0  - EV0),  Etp = (Etp0 - EV0)
+  * Et, Etp, R, Rp, ES, ESp, ET2p, E1p1, and E2p2 are independent random variables,
+  * and each sample has a distinct set of values. They all follow a Gaussian
+  * distribution, and you need to specify their average and standard deviation:
+	Et	= -5.0000e-01 ,	0.1	# [eV]
+	Etp	= 0.5 ,	0.1	# [eV]
+	R	= 0.6 ,	0.1	# [1]
+	Rp	= 0.6 ,	0.1	# [1]
+	ES	= 1 ,	0.1	# [eV]
+	ESp	= 1 ,	0.1	# [eV]
+	ET2p	= 0.5 ,	0.1	# [eV]
+	E1p1	= 1 ,	0.1	# [eV]
+	E2p2	= 0.5 ,	0.1	# [eV]
+  *
+  * xt is a random variable that follows a uniform distribution. You need to
+  * specify its minimum and maximum value:
+	xt	= 0.0000e+00 ,	8	# [A]
+  *
+  * The following quantities have separate values for electrons and holes:
+	Xsec	= 1.0000e-15 ,	1.0000e-15	# [cm^2]
+	Vth	= 1.5000e+07 ,	1.2000e+07	# [cm/s]
+	x0	= 0.5 ,	0.5	# [A]
+  *
+  * The following quantity has a single value:
+	nu0	= 1.0000e+13	# [1/s]
+}
+
+
+ABDWT {
+  * The ABDWT model involves 2 states:
+  * s1: uncharged state
+  * s2: charged state
+  *
+  * The model involves the following transitions:
+  * ds1/dt = - s1*k12 + s2*k21
+  * ds2/dt = + s1*k12 - s2*k21
+  *
+  * k12 = nu * exp[-(EB-E1-gamma*Eox)/kT] 
+  * k21 = nu * exp[-(EB-(E2-m*gamma*Eox)-gamma*Eox)/kT] 
+  * nu: attempt rate (s^-1) 
+  * EB: barrier energy (eV) 
+  * E1: reference energy level of the uncharged state 
+  * E2: energy level of the charged state 
+  * Eox: insulator electric field 
+  * gamma: fit factor for EB shift (e*cm) 
+  * m: fit factor for E2 shift(1) 
+  *
+  * EB is distributed according to a Gaussian distribution: 
+  * f(EB,T) = 1/sqrt(2*pi*EBSpread(T)^2) * exp[(EB-EBMean(T))^2/(2*EBSpread(T)^2)] 
+  * EBMean(T) = EBMean * exp[-EA/kT] 
+  * EBSpread(T) = EBSpread * exp[-EA/kT] 
+  * EA: activation energy for EBMean and EBSpread (eV) 
+  * E2 is distributed according to a Gaussian distribution: 
+  * f(E2,T) = 1/sqrt(2*pi*E2^2) * exp[(E2-E2Mean)^2/(2*E2Spread^2)] 
+  * E2Mean: mean value of E2 (eV) 
+  * E2Spread: variance of E2 (eV) 
+	nu	= 1.0000e+13	# [1/s]
+	gamma	= 4.0000e-09	# [e*cm]
+	m	= 2	# [1]
+	EBMean	= 1.3	# [eV]
+	EA	= 0.02	# [eV]
+	EBSpread	= 0.24	# [eV]
+	E2Mean	= 0.2	# [eV]
+	E2Spread	= 0.07	# [eV]
+}
+
+
+HCSDegradation {
+	Prsp	= 1 ,	1	# [1]
+	Prmp	= 1 ,	1	# [1]
+	Prth	= 1 ,	1	# [1]
+	N0	= 1.0000e+12 ,	1.0000e+12	# [cm^-2]
+	kph	= 1.0000e+08 ,	1.0000e+08	# [s^-1]
+	Eph	= 0.25 ,	0.25	# [eV]
+	Eemi	= 0.26 ,	0.26	# [eV]
+	Epass	= 0.2 ,	0.2	# [eV]
+	Eth0	= 1.9 ,	1.9	# [eV]
+	Nlev	= 10 ,	10	# [1]
+	nu_emi	= 1.0000e+12 ,	1.0000e+12	# [s^-1]
+	nu_pass	= 1.0000e+12 ,	1.0000e+12	# [s^-1]
+	nu_th	= 1.0000e+13 ,	1.0000e+13	# [s^-1]
+	p	= 15.5 ,	15.5	# [eA]
+	Esp	= 3.1 ,	3.1	# [eV]
+	Emp	= 0.25 ,	0.25	# [eV]
+	psp	= 11 ,	11	# [1]
+	pmp	= 0.1 ,	0.1	# [1]
+	Xsecsp	= 3.0000e-29 ,	3.0000e-29	# [cm^2]
+	Xsecmp	= 1.0000e-24 ,	1.0000e-24	# [cm^2]
+	sigmag	= 0.1 ,	0.1	# [eV]
+	lambda	= 0.17 ,	0.17	# [1]
+	m	= 3 ,	3	# [1]
+	delta	= 1 ,	1	# [eV^-1]
+	beta	= 0.15 ,	0.15	# [eV^-1]
+}
+
+DirectTunnelling
+{ * eps_ins:   insulator dielectricity,
+  * E_F_M:     metal Fermi energy,
+  * m_M:       metal effective mass,
+  * m_ins:     insulator effective mass,
+  * E_i:       energy nodes for pseudo barrier,
+  * m_s:       semiconductor effective mass,
+  * m_dos:     semiconductor DOS effective mass,
+  * E_barrier: height of barrier between semiconductor and oxide,
+  * See the manual for more details.
+	eps_ins	= 2.13	# [1]
+	E_F_M	= 11.7	# [eV]
+	m_M	= 1	# [m0]
+	m_ins	= 0.5 ,	0.77	# [m0]
+	E0	= 0.0000e+00 ,	0.0000e+00	# [eV]
+	E1	= 0.0000e+00 ,	0.0000e+00	# [eV]
+	E2	= 0.0000e+00 ,	0.0000e+00	# [eV]
+	m_s	= 0.19 ,	0.16	# [m0]
+	m_dos	= 0.32 ,	0.0000e+00	# [m0]
+	E_barrier	= 3.15 ,	4.73	# [eV]
+}
+
+LuckyModel
+{ * Ig = J*p1*p2*p3/eLsemR - Electron gate current density,
+  *      p1 = 0.25*(Eeff*eLsem/B)*exp (-B/Eeff/eLsem),
+  *           B = eBar0-eBL12*Eox^1/2-eBL23*Eox^2/3+Vox,
+  *      p2 = exp (-y/eLsem),
+  *      p3 = exp (-x0/eLins),
+  * where eBar0 is zero field Barrier height for electrons,
+  *       eBL12 is Barrier Lowering coefficient due to the image potetial,
+  *       eBL23 is Barrier Lowering coefficient due to the tunneling,
+  *       eLsem is the mean free path in semiconductor,
+  *       eLsemR is the redirection mean free path in semiconductor,
+  *       eLins is the mean free path in insulator.
+	eBar0	= 3.1	# [eV]
+	eBL12	= 2.6000e-04	# [(V*cm)^1/2]
+	eBL23	= 3.0000e-05	# [(V*cm^2)^1/3]
+	eLsem	= 8.9000e-07	# [cm]
+	eLsemR	= 6.2000e-06	# [cm]
+	eLins	= 3.2000e-07	# [cm]
+  * the same for holes
+	hBar0	= 4.7	# [eV]
+	hBL12	= 2.6000e-04	# [(V*cm)^1/2]
+	hBL23	= 3.0000e-05	# [(V*cm^2)^1/3]
+	hLsem	= 1.0000e-07	# [cm]
+	hLsemR	= 6.2000e-06	# [cm]
+	hLins	= 3.2000e-07	# [cm]
+	eps_ins	= 3.1	# [1]
+	Prepel	= 1	# [1]
+	Pvertical	= 1	# [1]
+	Ptotal	= 0.0000e+00	# [1]
+  * See the manual for more details.
+}
+
+FiegnaModel
+{ * Ig = eA*n(x)*p1*p2 - Electron gate current density,
+  *      p1 = INTEGRAL[E^1.5*exp(-eChi*E^3/Eeff^1.5)dE] from B to +Infinity,
+  *           B = eBar0-eBL12*Eox^1/2-eBL23*Eox^2/3+Vox,
+  *      p2 = exp (-x0/eLins),
+  * where eBar0 is zero field Barrier height for electrons,
+  *       eBL12 is Barrier Lowering coefficient due to the image potetial,
+  *       eBL23 is Barrier Lowering coefficient due to the tunneling,
+  *       eChi is a constant of the high-energy distribution function,
+  *       eA is a fitting constant of Fiegna's model,
+  *       eLins is the mean free path in insulator.
+	eBar0	= 3.1	# [eV]
+	eBL12	= 2.6000e-04	# [(V*cm)^1/2]
+	eBL23	= 1.5000e-05	# [(V*cm^2)^1/3]
+	eChi	= 1.3000e+08	# [(V/cm)^1.5/eV^1.5]
+	eA	= 4.8700e+04	# [cm/s/eV^2.5]
+	eLins	= 3.2000e-07	# [cm]
+  * the same for holes
+	hBar0	= 4.7	# [eV]
+	hBL12	= 2.6000e-04	# [(V*cm)^1/2]
+	hBL23	= 1.5000e-05	# [(V*cm^2)^1/3]
+	hChi	= 1.3000e+08	# [(V/cm)^1.5/eV^1.5]
+	hA	= 4.8700e+04	# [cm/s/eV^2.5]
+	hLins	= 3.2000e-07	# [cm]
+	eps_ins	= 3.1	# [1]
+	Prepel	= 1	# [1]
+	Ptotal	= 0.0000e+00	# [1]
+  * See the manual for more details.
+}
+
+FowlerModel
+{ * Ig = A*Eox*Eox*exp(-B/Eox) - Fowler-Nordheim gate current density,
+  *      For writing: A = Aw, B = Bw,
+  *      For erasing: A = Ae, B = Be, Ielectron = Gm * Ig, Ihole = (Gm-1) * Ig,
+  * where A, B are physical Fowler-Nordheim constants,
+  *       Gm is a multiplication factor for erasing regime.
+	Aw	= 1.2300e-06	# [A/V^2]
+	Bw	= 2.3700e+08	# [V/cm]
+	Ae	= 1.8700e-07	# [A/V^2]
+	Be	= 1.8800e+08	# [V/cm]
+	Gm	= 1	# [1]
+  * See the manual for more details.
+}
+
+Warning: License feature sdevice-noise_all is about to expire in 1 days
+Traps
+{ 
+  *     G is degeneracy factor 
+	G	= 1 ,	1	# [1]
+	Xsec	= 1.0000e-15 ,	1.0000e-15	# [cm^2]
+	a1	= 0.0000e+00 ,	0.0000e+00	# [1]
+	p1	= 1 ,	1	# [1]
+	a2	= 0.0000e+00 ,	0.0000e+00	# [1]
+	p2	= 1 ,	1	# [1]
+	p0	= 1 ,	1	# [1]
+
+  *     VthFormula=1: Vth(T) = Vth*(T/300)^1/2 
+  *     VthFormula=2: Vth(T) = (3*k*T/m_300)^1/2, 
+  *                            m_300 is DOS mass calculated at T=300 
+	VthFormula	= 1 ,	1	# [1]
+	Vth	= 2.0420e+07 ,	1.5626e+07	# [cm/s]
+	Jcoef	= 0.0000e+00 ,	0.0000e+00	# [1]
+
+  *     Tunneling to traps is determined by the interaction volume
+  *     TrapVolume, the Huang-Rhys factor, and the Phonon energy.
+	TrapVolume	= 0.0000e+00	# [um^3]
+	HuangRhys	= 0.0000e+00	# [1]
+	PhononEnergy	= 0.0000e+00	# [eV]
+	alpha	= 1	# [1]
+	gamma	= 1	# [1]
+
+  *     T2T parameters
+	T2T_Rcutoff	= 3	# [cm]
+	T2T_Wopt	= 3	# [eV]
+	T2T_WT	= 1.5	# [eV]
+	T2T_m	= 0.5	# [1]
+	T2T_factor	= 1	# [1]
+
+
+  *     Constant emission rate term
+	ConstEmissionRate	= 0.0000e+00 ,	0.0000e+00	# [1/s]
+
+}
+
+ThermionicEmission
+{ * 
+  * Thermionic emission current between regions 1 and 2 
+  *  is defined as (for more details see D. Schroeder,  
+  *  'Modelling of Interface Carrier Transport') . 
+  *  J21 = A*q*R*[(v2*n2 - m2/m1*v1*n1*exp(-dEc/(kB*T1)))] 
+  *  where R=sqrt(KB*T0/(2*des_n_Constants::pi*m0)), 
+  *  v(i)=sqrt((T(i)/T0)/(m(i)/m0)), i=1,2.
+  *  delta(Ec) = Ec1-Ec2 > 0 
+  * Thermionic emission energy flux between regions 1 and 2 
+  *  is defined as: 
+  *  S21 = -B*R*kB*[(v2*n2*T2 - m2/m1*v1*n1*T1*exp(-dEc/(kB*T1)))] 
+  *  by default B=2*A 
+  *  J21=J12;  S21 = S12 + 1/q*C*dEc*J21 
+  *  Equations for holes are similar: 
+  *  J21_h = -A_h*q*R*[(v2*p2 - m2/m1*v1*p1*exp(dEv/(kB*T1)))] 
+  *  S21_h = -B_h*R*kB*[(v2*p2*T2 - m2/m1*v1*p1*T1*exp(dEv/(kB*T1)))] 
+  *  J21_h=J12_h;  S21_h = S12_h + 1/q*C*dEv*J21_h 
+  *  In all equations T1 are T2 are appropriate carrier temperatures.
+	A	= 2 ,	2	# [1]
+	B	= 4 ,	4	# [1]
+	C	= 1 ,	1	# [1]
+	vel_org	= 1.0000e+06 ,	1.0000e+06	# [cm/s]
+	B_org	= 4 ,	4	# [1]
+	C_org	= 1 ,	1	# [1]
+}
+
+Dipole
+{
+  * Dipole layer at insulator/insulator interface:
+  *     phi^+ - phi^- = q * sigma_D / (eps0 * epsilon)
+  *   phi^- is the electrostatic potential on the reference side
+  *     (specified in the command file),
+  *   phi^+ is the electrostatic potential on the other side,
+  *   sigma_D is the normal dipole surface density,
+  *   epsilon is the relative permitivity of the dipole layer,
+  *   eps0 the permitivity of the vacuum, and q the elementary charge.
+	sigma_D	= 0.0000e+00	# [1/cm]
+	epsilon	= 3.9	# [1]
+}
+
+
+}
