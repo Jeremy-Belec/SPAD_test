@@ -1,4 +1,3 @@
-MaterialInterface = "Oxide/Silicon" {
 
 OpticalSurfaceRoughness
 { *  Parameters for the optical characterization of a rough surface (material interface)
@@ -399,7 +398,7 @@ FowlerModel
   * See the manual for more details.
 }
 
-Warning: License feature sdevice-noise_all is about to expire in 1 days
+
 Traps
 { 
   *     G is degeneracy factor 
@@ -481,4 +480,4 @@ Dipole
 }
 
 
-}
+
