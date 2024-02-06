@@ -124,10 +124,6 @@
 (sdedr:define-constant-profile-region "Si_region" "Si_profile" "Si_layer")
 
 
-#Doping of P contact
-(sdedr:define-constant-profile "p_contact_profile" "BoronActiveConcentration" P_cont)
-(sdedr:define-constant-profile-region "p_contact_region" "p_contact_profile" "P_cont_layer")
-
 
 
 ##########################################################################################
