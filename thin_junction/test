@@ -7,7 +7,7 @@
 #####################################################################################################################
 #Definition of dimensions variables:
 
-(define t_Ge 0.5) ;Ge absorption layer thickness (p)[um]
+(define t_Ge 2) ;Ge absorption layer thickness (p)[um]
 (define t_Ox 0.005) ;Oxide layer thickness (p)[um]
 (define t_Si 5) ;Si charge sheet thickness (p)[um]
 (define t_dop 0.3) ;doping profile thickness (n)[um]
@@ -42,13 +42,18 @@
 (sdegeo:create-rectangle (position (* L_Si -0.5) 0 0) (position (* L_Si 0.5) t_Si 0) "Silicon" "Si_layer")
 
 
+#P contact
+(sdegeo:create-rectangle (position (+ 2 (* L_Si -0.5)) t_Si 0) (position (+ 2 (+ L_dop (* L_Si -0.5))) (+ t_Ge t_Si) 0) "Silicon" "Si_left")
+
+#P contact
+(sdegeo:create-rectangle (position (- (* L_Si 0.5) 2) t_Si 0) (position (- (- (* L_Si 0.5) L_dop) 2) (+ t_Ge t_Si) 0) "Silicon" "Si_right")
 
 
 #P contact
-(sdegeo:create-rectangle (position (+ 2 (* L_Si -0.5)) t_Si 0) (position (+ 2 (+ L_dop (* L_Si -0.5))) (+ t_Ox t_Si) 0) "Gold" "P_cont_layer_left")
+(sdegeo:create-rectangle (position (+ 2 (* L_Si -0.5)) (+ t_Ox t_Si) 0) (position (+ 2 (+ L_dop (* L_Si -0.5))) (+ t_Ge (+ t_Ox t_Si)) 0) "Gold" "P_cont_layer_left")
 
 #P contact
-(sdegeo:create-rectangle (position (- (* L_Si 0.5) 2) t_Si 0) (position (- (- (* L_Si 0.5) L_dop) 2) (+ t_Ox t_Si) 0) "Gold" "P_cont_layer_right")
+(sdegeo:create-rectangle (position (- (* L_Si 0.5) 2) (+ t_Ox t_Si) 0) (position (- (- (* L_Si 0.5) L_dop) 2) (+ t_Ge (+ t_Ox t_Si)) 0) "Gold" "P_cont_layer_right")
 
 #####################################################################################################################
 
@@ -58,21 +63,21 @@
 
 (sdegeo:define-contact-set "p_contact_left" 4  (color:rgb 1 0 0 ) "##")
 (sdegeo:set-current-contact-set "p_contact_left")
-(sdegeo:set-contact-edges (find-edge-id (position (+ 2 (* L_Si -0.5)) (- (+ t_Ox t_Ge) t_contact) 0)))
+(sdegeo:set-contact-edges (find-edge-id (position (+ 2 (* L_Si -0.5)) (+ t_Ge (+ t_Si t_Ox)) 0)))
 
 
 #P contact
 
 (sdegeo:define-contact-set "p_contact_right" 4  (color:rgb 1 0 0 ) "##")
 (sdegeo:set-current-contact-set "p_contact_right")
-(sdegeo:set-contact-edges (find-edge-id (position (- (* L_Si 0.5) 2) (- (+ t_Ox t_Ge) t_contact) 0)))
+(sdegeo:set-contact-edges (find-edge-id (position (- (* L_Si 0.5) 2) (+ t_Ge (+ t_Si t_Ox)) 0)))
 
 
 #N contact
 
 (sdegeo:define-contact-set "n_contact_center" 4  (color:rgb 1 0 0 ) "##")
 (sdegeo:set-current-contact-set "n_contact_center")
-(sdegeo:set-contact-edges (find-edge-id (position (* L_abs -0.5) (- (+ t_Ox t_Ge) t_contact) 0)))
+(sdegeo:set-contact-edges (find-edge-id (position (* L_abs -0.5) (+ t_Si t_Ox) 0)))
 #####################################################################################################################
 
 
@@ -80,11 +85,11 @@
 #P side
 
 (sdedr:define-refeval-window "BaseLine.SourceD" 
-  "Line" (position (* L_abs -0.2) (+ t_Ox t_Ge) 0.0) (position (* L_abs 0.2) (+ t_Ox t_Ge) 0.0))
+  "Line" (position (* L_abs -0.2) t_Si 0.0) (position (* L_abs 0.2) t_Si 0.0))
 #Definition of the doping (n,p)
 
 (sdedr:define-analytical-profile-placement "PlaceAP.Source3"
-  "Gauss.SourceDrainD" "BaseLine.SourceD" "Positive" "NoReplace" "Eval")
+  "Gauss.SourceDrainD" "BaseLine.SourceD" "Negative" "NoReplace" "Eval")
 
 (sdedr:define-gaussian-profile "Gauss.SourceDrainD"
   "BoronActiveConcentration" "PeakPos" 0 "PeakVal" 1e18
@@ -94,11 +99,11 @@
 #N side center
 
 (sdedr:define-refeval-window "BaseLine.SourceNC" 
-  "Line" (position (* L_abs -0.5) (+ t_Ox t_Ge) 0.0) (position (* L_abs 0.5) (+ t_Ox t_Ge) 0.0))
+  "Line" (position (* L_abs -0.5) t_Si 0.0) (position (* L_abs 0.5) t_Si 0.0))
 #Definition of the doping (n,p)
 
 (sdedr:define-analytical-profile-placement "PlaceAP.Source4"
-  "Gauss.SourceDrainNC" "BaseLine.SourceNC" "Positive" "NoReplace" "Eval")
+  "Gauss.SourceDrainNC" "BaseLine.SourceNC" "Negative" "NoReplace" "Eval")
 
 (sdedr:define-gaussian-profile "Gauss.SourceDrainNC"
   "PhosphorusActiveConcentration" "PeakPos" 0 "PeakVal" 1e19
@@ -122,7 +127,7 @@
 
 
 #Oxide layer
-(sdedr:define-refeval-window "RefEvalWin.Oxide_layer" "Rectangle"  (position (* L_abs -0.5) t_Ge 0) (position (* L_abs 0.5) (+ t_Ge t_Ox)  0) )
+(sdedr:define-refeval-window "RefEvalWin.Oxide_layer" "Rectangle"  (position (* L_abs -0.5) t_Si 0) (position (* L_abs 0.5) (+ t_Si t_Ox)  0) )
 (sdedr:define-refinement-size "RefinementDefinition.Oxide_layer" 0.5 0.005 0.1 0.001)
 (sdedr:define-refinement-placement "RefinementPlacement.Oxide_layer" "RefinementDefinition.Oxide_layer" (list "window" "RefEvalWin.Oxide_layer"))
 
@@ -130,23 +135,39 @@
 
 #Si Multiplication layer
 
-(sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_Si -0.5) (+ t_Ox t_Ge) 0) (position (* L_Si 0.5) (+ t_Si (+ t_Ox t_Ge)) 0))
+(sdedr:define-refeval-window "RefEvalWin.Si_multiplication_layer" "Rectangle"  (position (* L_Si -0.5) 0 0) (position (* L_Si 0.5) t_Si 0))
 (sdedr:define-refinement-size "RefinementDefinition.Si_multiplication_layer" 0.5 0.1 0.1 0.05 )
 (sdedr:define-refinement-placement "RefinementPlacement.Si_multiplication_layer" "RefinementDefinition.Si_multiplication_layer" (list "window" "RefEvalWin.Si_multiplication_layer"))
 
 
 #P contact
 
-(sdedr:define-refeval-window "RefEvalWin.P_contact_layer" "Rectangle"  (position (* L_Si -0.5) (- (+ t_Ox t_Ge) t_contact) 0) (position (+ L_dop (* L_Si -0.5)) (+ t_Ox t_Ge) 0))
+(sdedr:define-refeval-window "RefEvalWin.P_contact_layer" "Rectangle"  (position (+ 2 (* L_Si -0.5)) t_Si 0) (position (+ 2 (+ L_dop (* L_Si -0.5))) (+ t_Ge t_Si) 0))
 (sdedr:define-refinement-size "RefinementDefinition.P_contact_layer" 0.5 0.005 0.1 0.001 )
 (sdedr:define-refinement-placement "RefinementPlacement.P_contact_layer" "RefinementDefinition.P_contact_layer" (list "window" "RefEvalWin.P_contact_layer"))
 
 
 #N contact
 
-(sdedr:define-refeval-window "RefEvalWin.N_contact_layer" "Rectangle"  (position (* L_Si 0.5) (- (+ t_Ox t_Ge) t_contact) 0) (position (- (* L_Si 0.5) L_dop) (+ t_Ox t_Ge) 0))
+(sdedr:define-refeval-window "RefEvalWin.N_contact_layer" "Rectangle"  (position (- (* L_Si 0.5) 2) t_Si 0) (position (- (- (* L_Si 0.5) L_dop) 2) (+ t_Ge t_Si) 0))
 (sdedr:define-refinement-size "RefinementDefinition.N_contact_layer" 0.5 0.005 0.1 0.001 )
 (sdedr:define-refinement-placement "RefinementPlacement.N_contact_layer" "RefinementDefinition.N_contact_layer" (list "window" "RefEvalWin.N_contact_layer"))
+
+
+
+#P contact
+
+(sdedr:define-refeval-window "RefEvalWin.PP_contact_layer" "Rectangle"  (position (+ 2 (* L_Si -0.5)) (+ t_Ox t_Si) 0) (position (+ 2 (+ L_dop (* L_Si -0.5))) (+ t_Ge (+ t_Ox t_Si)) 0))
+(sdedr:define-refinement-size "RefinementDefinition.PP_contact_layer" 0.5 0.005 0.1 0.001 )
+(sdedr:define-refinement-placement "RefinementPlacement.PP_contact_layer" "RefinementDefinition.PP_contact_layer" (list "window" "RefEvalWin.PP_contact_layer"))
+
+
+#N contact
+
+(sdedr:define-refeval-window "RefEvalWin.NN_contact_layer" "Rectangle"  (position (- (* L_Si 0.5) 2) (+ t_Ox t_Si) 0) (position (- (- (* L_Si 0.5) L_dop) 2) (+ t_Ge (+ t_Ox t_Si)) 0))
+(sdedr:define-refinement-size "RefinementDefinition.NN_contact_layer" 0.5 0.005 0.1 0.001 )
+(sdedr:define-refinement-placement "RefinementPlacement.NN_contact_layer" "RefinementDefinition.NN_contact_layer" (list "window" "RefEvalWin.NN_contact_layer"))
+
 
 #####################################################################################################################
 
