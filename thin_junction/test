@@ -50,10 +50,10 @@
 
 
 #P contact
-(sdegeo:create-rectangle (position (+ 2 (* L_Si -0.5)) (+ t_Ox t_Si) 0) (position (+ 2 (+ L_dop (* L_Si -0.5))) (+ t_Ge (+ t_Ox t_Si)) 0) "Gold" "P_cont_layer_left")
+(sdegeo:create-rectangle (position (+ 2 (* L_Si -0.5)) (+ t_Ge t_Si) 0) (position (+ 2 (+ L_dop (* L_Si -0.5))) (+ t_Ge (+ t_Ox t_Si)) 0) "Gold" "P_cont_layer_left")
 
 #P contact
-(sdegeo:create-rectangle (position (- (* L_Si 0.5) 2) (+ t_Ox t_Si) 0) (position (- (- (* L_Si 0.5) L_dop) 2) (+ t_Ge (+ t_Ox t_Si)) 0) "Gold" "P_cont_layer_right")
+(sdegeo:create-rectangle (position (- (* L_Si 0.5) 2) (+ t_Ge t_Si) 0) (position (- (- (* L_Si 0.5) L_dop) 2) (+ t_Ge (+ t_Ox t_Si)) 0) "Gold" "P_cont_layer_right")
 
 #####################################################################################################################
 
@@ -157,14 +157,14 @@
 
 #P contact
 
-(sdedr:define-refeval-window "RefEvalWin.PP_contact_layer" "Rectangle"  (position (+ 2 (* L_Si -0.5)) (+ t_Ox t_Si) 0) (position (+ 2 (+ L_dop (* L_Si -0.5))) (+ t_Ge (+ t_Ox t_Si)) 0))
+(sdedr:define-refeval-window "RefEvalWin.PP_contact_layer" "Rectangle"  (position (+ 2 (* L_Si -0.5)) (+ t_Ge t_Si) 0) (position (+ 2 (+ L_dop (* L_Si -0.5))) (+ t_Ge (+ t_Ox t_Si)) 0))
 (sdedr:define-refinement-size "RefinementDefinition.PP_contact_layer" 0.5 0.005 0.1 0.001 )
 (sdedr:define-refinement-placement "RefinementPlacement.PP_contact_layer" "RefinementDefinition.PP_contact_layer" (list "window" "RefEvalWin.PP_contact_layer"))
 
 
 #N contact
 
-(sdedr:define-refeval-window "RefEvalWin.NN_contact_layer" "Rectangle"  (position (- (* L_Si 0.5) 2) (+ t_Ox t_Si) 0) (position (- (- (* L_Si 0.5) L_dop) 2) (+ t_Ge (+ t_Ox t_Si)) 0))
+(sdedr:define-refeval-window "RefEvalWin.NN_contact_layer" "Rectangle"  (position (- (* L_Si 0.5) 2) (+ t_Ge t_Si) 0) (position (- (- (* L_Si 0.5) L_dop) 2) (+ t_Ge (+ t_Ox t_Si)) 0))
 (sdedr:define-refinement-size "RefinementDefinition.NN_contact_layer" 0.5 0.005 0.1 0.001 )
 (sdedr:define-refinement-placement "RefinementPlacement.NN_contact_layer" "RefinementDefinition.NN_contact_layer" (list "window" "RefEvalWin.NN_contact_layer"))
 
