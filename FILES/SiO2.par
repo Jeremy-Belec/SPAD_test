@@ -1,6 +1,6 @@
 
 *Writing parameter file 'models.par... 
-Material = "Oxide" {
+*Material = "Oxide" {
 
 Epsilon
 { *  Ratio of the permittivities of material and vacuum
@@ -803,4 +803,4 @@ Resistivity
 }
 
 
-}
+*}
