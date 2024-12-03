@@ -1,6 +1,7 @@
 
 
 
+
   
 (sde:clear)
 
@@ -145,7 +146,7 @@
 #P deep 
 
 (sdedr:define-refeval-window "BaseLine.SourceD" 
-  "Line" (position (- (- 0 center) 1) (+ t_Etch t_Si) 0.0) (position (+ (- 0 center) 1) (+ t_Etch t_Si) 0.0))
+  "Line" (position (- (- 0 center) 1.2) (+ t_Etch t_Si) 0.0) (position (+ (- 0 center) 1.2) (+ t_Etch t_Si) 0.0))
 #Definition of the doping (n,p)
 
 (sdedr:define-analytical-profile-placement "PlaceAP.Source3"
@@ -153,7 +154,7 @@
 
 (sdedr:define-gaussian-profile "Gauss.SourceDrainD"
   "BoronActiveConcentration" "PeakPos" 0 "PeakVal" 2e18
-  "ValueAtDepth" 5e16 "Depth" 2.2 "Gauss" "Factor" 0.2)
+  "ValueAtDepth" 5e17 "Depth" 1.6 "Gauss" "Factor" 0.2)
 
 
 #N shallow  
@@ -166,8 +167,8 @@
   "Gauss.SourceDrainNC" "BaseLine.SourceNC" "Negative" "NoReplace" "Eval")
 
 (sdedr:define-gaussian-profile "Gauss.SourceDrainNC"
-  "PhosphorusActiveConcentration" "PeakPos" 0 "PeakVal" 9e19
-  "ValueAtDepth" 5e16 "Depth" 2 "Gauss" "Factor" 0.1)
+  "PhosphorusActiveConcentration" "PeakPos" 0 "PeakVal" 9e18
+  "ValueAtDepth" 5e17 "Depth" 1.0 "Gauss" "Factor" 0.1)
 
 
 
@@ -195,8 +196,8 @@
   "Gauss.SourceDrainDRight" "BaseLine.SourceDRight" "Negative" "NoReplace" "Eval")
 
 (sdedr:define-gaussian-profile "Gauss.SourceDrainDRight"
-  "BoronActiveConcentration" "PeakPos" 0 "PeakVal" 5e16
-  "ValueAtDepth" 1e16 "Depth" 1 "Gauss" "Factor" 0.1)
+  "BoronActiveConcentration" "PeakPos" 0 "PeakVal" 7e15
+  "ValueAtDepth" 1e15 "Depth" 1 "Gauss" "Factor" 0.1)
 
 
 
@@ -206,7 +207,7 @@
 #P deep 
 
 (sdedr:define-refeval-window "BaseLine.SourceDRR" 
-  "Line" (position (- center 1) (+ t_Etch t_Si) 0.0) (position (+ center 1) (+ t_Etch t_Si) 0.0))
+  "Line" (position (- center 1.2) (+ t_Etch t_Si) 0.0) (position (+ center 1.2) (+ t_Etch t_Si) 0.0))
 #Definition of the doping (n,p)
 
 (sdedr:define-analytical-profile-placement "PlaceAP.Source3RR"
@@ -214,7 +215,7 @@
 
 (sdedr:define-gaussian-profile "Gauss.SourceDrainDRR"
   "BoronActiveConcentration" "PeakPos" 0 "PeakVal" 2e18
-  "ValueAtDepth" 5e16 "Depth" 2.2 "Gauss" "Factor" 0.2)
+  "ValueAtDepth" 5e17 "Depth" 1.6 "Gauss" "Factor" 0.2)
 
 
 #N shallow  
@@ -227,8 +228,8 @@
   "Gauss.SourceDrainNCRR" "BaseLine.SourceNCRR" "Negative" "NoReplace" "Eval")
 
 (sdedr:define-gaussian-profile "Gauss.SourceDrainNCRR"
-  "PhosphorusActiveConcentration" "PeakPos" 0 "PeakVal" 9e19
-  "ValueAtDepth" 5e16 "Depth" 2 "Gauss" "Factor" 0.1)
+  "PhosphorusActiveConcentration" "PeakPos" 0 "PeakVal" 9e18
+  "ValueAtDepth" 5e17 "Depth" 1 "Gauss" "Factor" 0.1)
 
 
 
@@ -243,8 +244,8 @@
   "Gauss.SourceDrainDLRR" "BaseLine.SourceDLRR" "Negative" "NoReplace" "Eval")
 
 (sdedr:define-gaussian-profile "Gauss.SourceDrainDLRR"
-  "BoronActiveConcentration" "PeakPos" 0 "PeakVal" 5e16
-  "ValueAtDepth" 1e16 "Depth" 1 "Gauss" "Factor" 0.1)
+  "BoronActiveConcentration" "PeakPos" 0 "PeakVal" 7e15
+  "ValueAtDepth" 1e15 "Depth" 1 "Gauss" "Factor" 0.1)
 
 
 
