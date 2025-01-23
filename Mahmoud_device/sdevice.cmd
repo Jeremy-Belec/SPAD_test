@@ -6,9 +6,9 @@ File {
 	Grid = "n1_msh.tdr"
 	Parameter= "models.par"
 *-Output	
-	Current=   "fff_adding_membane2_des.plt"
-	Plot=      "fff_adding_membane2_des.tdr"
-	Output=    "fff_adding_membane2_des.log"
+	Current=   "x_y_flipped_des.plt"
+	Plot=      "x_y_flipped_des.tdr"
+	Output=    "x_y_flipped_des.log"
 }
 
 
@@ -60,12 +60,14 @@ Physics	{
 
 Plot {    
 *- Doping and mole fraction profiles	
-	*Doping DonorConcentration AcceptorConcentration	
+	Doping DonorConcentration AcceptorConcentration	
 	*xMoleFraction
 *- Band structure
 	*BandGap BandGapNarrowing ElectronAffinity
 	ConductionBandEnergy ValenceBandEnergy
-	eQuasiFermiEnergy hQuasiFermiEnergy		
+	eQuasiFermiEnergy hQuasiFermiEnergy
+	eGradQuasiFermi/Vector
+	hGradQuasiFermi/Vector	
 *- Carrier Densities:
   	*eDensity hDensity
 	*EffectiveIntrinsicDensity IntrinsicDensity
@@ -128,7 +130,8 @@ Solve {
 	Quasistationary ( 
 		InitialStep= 1e-3 Increment= 1.41 Decrement= 2
 		MinStep= 1e-8     MaxStep= 0.001	
-		Goal { Name="p_contact_center" Voltage= -35 }
+		Goal { Name="p_contact_center" Voltage= -45 }
+		 Plot {Range = (0 1) Intervals=46}
 	){ Coupled { Poisson Electron Hole } }
 
 
