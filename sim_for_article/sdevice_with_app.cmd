@@ -1,4 +1,5 @@
 
+
 #setdep @node|sde@
 
 File {
@@ -6,9 +7,9 @@ File {
 	Grid = "n1_msh.tdr"
 	Parameter= "models.par"
 *-Output	
-	Current=   "x_y_flipped_des.plt"
-	Plot=      "x_y_flipped_des.tdr"
-	Output=    "x_y_flipped_des.log"
+	Current=   "x_y_flipped_thin_junc_out_App_des.plt"
+	Plot=      "x_y_flipped_thin_junc_out_App_des.tdr"
+	Output=    "x_y_flipped_thin_junc_out_App_des.log"
 }
 
 
@@ -46,15 +47,15 @@ Physics	{
 	Fermi
 	RecGenHeat
 	HeteroInterfaces
-	Mobility(HighFieldSaturation DopingDependance Enormal)
+	Mobility(HighFieldSaturation(GradQuasiFermi) DopingDependance Enormal)
 	EffectiveIntrinsicDensity(BandGapNarrowing(OldSlotboom)) 
 	Recombination(
 		*Radiative
 		*SRH(Tunneling)
 		SRH( DopingDep )
 		*Auger
-		Band2Band(E2)
-		Avalanche( Eparallel )
+		Band2Band(Model= NonLocalPath)
+		Avalanche(Eparallel Tunneling)
 	)	
 	
 	
@@ -105,6 +106,7 @@ Math {
 	Derivatives
   	Avalderivatives
 	ComputeIonizationIntegrals
+	BreakAtIonIntegral(1 1.1)
 	AvalPostProcessing
 	Extrapolate
 	RelErrcontrol
@@ -127,19 +129,19 @@ Math {
 
 Solve {
 	NewCurrentPrefix= "tmp_"
-	Optics
+	*Optics
 	Poisson
 	NewCurrentPrefix= ""
-	Coupled (Iterations= 20){ Poisson Electron Hole }	
+	Coupled (Iterations= 100){ Poisson Electron Hole }	
   	Plot (FilePrefix= "n@node@_photo")
 
 			
 	*ramp voltage at anode from 0V to -40 V	
 	Quasistationary ( 
 		InitialStep= 1e-3 Increment= 1.41 Decrement= 2
-		MinStep= 1e-8     MaxStep= 0.001	
-		Goal { Name="p_contact_center" Voltage= -45 }
-		 Plot {Range = (0 1) Intervals=46}
+		MinStep= 1e-8     MaxStep= 0.025	
+		Goal { Name="p_contact_center" Voltage= -35 }
+		 Plot {Range = (0 1) Intervals=31}
 	){ Coupled { Poisson Electron Hole } }
 
 
