@@ -52,10 +52,10 @@ Physics	{
 	Recombination(
 		*Radiative
 		*SRH(Tunneling)
-		SRH( DopingDep )
+		SRH(DopingDep  Tunneling)
 		*Auger
 		Band2Band(Model= NonLocalPath)
-		Avalanche(Eparallel Tunneling)
+		Avalanche(Eparallel)
 	)	
 	
 	
